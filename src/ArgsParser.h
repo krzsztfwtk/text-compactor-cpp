@@ -14,9 +14,10 @@ public:
     std::string getConfigFilename() const;
     std::vector<std::pair<std::string, int>> getWordlistFilenames() const;
     int getCapitalBoost() const;
-    unsigned int getMinimumTfidf() const;
-    unsigned int getTaggs() const;
+    unsigned int getMinimumTFIDF() const;
+    unsigned int getNumberOfTags() const;
     bool isHelp() const;
+    bool isVerbose() const;
 
 private:
     int argc_;
@@ -28,6 +29,7 @@ private:
     std::string output_filename_;
     std::string config_filename_;
     bool help_ = false;
+    bool verbose_ = false;
 
     std::vector<std::pair<std::string, int>> wordlist_filenames_with_weights_;
     int capital_boost_ = 0;

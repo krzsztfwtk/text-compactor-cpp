@@ -12,7 +12,7 @@ ArgsParser::ArgsParser(int argc, char** argv)
     this->argc_=argc;
     this->argv_=argv;
     loadArgs();
-    //loadConfig();
+    loadConfig();
 }
 
 void ArgsParser::loadArgs()
@@ -30,12 +30,18 @@ void ArgsParser::loadArgs()
         } else if (arg == "-c" && i + 1 < argc_) 
         {
             config_filename_ = argv_[++i];
-        } else if (arg == "-h" && i + 1 < argc_) 
+        } else if (arg == "-h") 
         {
             help_ = true;
-        } else if (arg == "--help" && i + 1 < argc_) 
+        } else if (arg == "--help") 
         {
             help_ = true;
+        } else if (arg == "-v") 
+        {
+            verbose_ = true;
+        } else if (arg == "--verbose") 
+        {
+            verbose_ = true;
         }
     }
 }
@@ -44,6 +50,11 @@ void ArgsParser::loadConfig()
 {
     std::ifstream config_file(config_filename_);
     std::string line;
+
+    if(isVerbose())
+    {
+        std::cout << "loading config:" << config_filename_;
+    }
 
     while (std::getline(config_file, line)) 
     {
@@ -55,7 +66,7 @@ void ArgsParser::loadConfig()
 
         std::stringstream ss(line);
         std::string key, value;
-        if (std::getline(ss, key, '=') && std::getline(ss, value)) 
+        if (std::getline(ss, key, '=') && ss >> value) 
         {
             if (key == "wordlist")
             {
@@ -102,12 +113,33 @@ std::string ArgsParser::getConfigFilename() const
     return config_filename_;
 }
 
+bool ArgsParser::isHelp() const
+{
+    return help_;
+}
+
+bool ArgsParser::isVerbose() const
+{
+    return verbose_;
+}
+
 std::vector<std::pair<std::string, int>> ArgsParser::getWordlistFilenames() const
 {
     return wordlist_filenames_with_weights_;
 }
 
-bool ArgsParser::isHelp() const
+int ArgsParser::getCapitalBoost() const
 {
-    return help_;
+    return capital_boost_;
+}
+
+unsigned int ArgsParser::getMinimumTFIDF() const
+{
+    return minimum_tfidf_;
+}
+
+
+unsigned int ArgsParser::getNumberOfTags() const
+{
+    return taggs_number_;
 }

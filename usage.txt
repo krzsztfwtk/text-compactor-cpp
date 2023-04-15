@@ -9,3 +9,4 @@ Usage:
 
 General options:
 -h, --help	Show help.
+-v, --verbose	Give more output.
