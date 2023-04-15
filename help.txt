@@ -9,7 +9,7 @@ Usage:
 
 to specify in config.ini:
 
-[language]
+#LANGUAGE
 #files with wordlist
 #n is number of files 
 #w0, w1, ..., wn are weights of files
@@ -18,15 +18,17 @@ to specify in config.ini:
 #caring care 102
 wordlist = n file_0 w0 file_1 w1 ... file_n wn
 
-#boost importance of capital names -10<i<10
+#boost importance of capital names -100<i<100
 capitalBoost = i
 
-[output]
+#OUTPUT
 #number of minimum tfidf: higher number the shorter output text will [default: 500]
 minTfidf = 500
 
 #taggs of tags about text to be printed [default: 0]
 taggs = 0
+
+
 
 General options:
 -h, --help	Show help.
