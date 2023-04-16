@@ -1,8 +1,12 @@
 #include <iostream>
 
+#include "ArgsParser.h"
+
 int main(int argc, char** argv)
 {
-    std::cout << "hello world!!!\n";
+    ArgsParser arguments(argc, argv);
+
+    std::cout << arguments.getMinimumTFIDF();
 
     return 0;
 }

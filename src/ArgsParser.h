@@ -2,18 +2,18 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
 
 class ArgsParser {
 public:
     ArgsParser(int argc, char** argv);
-    bool parseArgs();
+    ~ArgsParser();
 
     std::string getInputFilename() const;
     std::string getOutputFilename() const;
     std::string getConfigFilename() const;
     std::vector<std::pair<std::string, int>> getWordlistFilenames() const;
-    int getCapitalBoost() const;
+    std::string getStopWordsFilename() const;
+    int getCapitalNamesBoost() const;
     unsigned int getMinimumTFIDF() const;
     unsigned int getNumberOfTags() const;
     bool isHelp() const;
@@ -32,7 +32,8 @@ private:
     bool verbose_ = false;
 
     std::vector<std::pair<std::string, int>> wordlist_filenames_with_weights_;
-    int capital_boost_ = 0;
+    std::string stop_words_filename_ = "";
+    int capital_names_boost_ = 0;
     unsigned int minimum_tfidf_ = 500;
     unsigned int taggs_number_ = 0;
 

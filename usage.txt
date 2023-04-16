@@ -1,10 +1,12 @@
+Summarizes the given text
+
 Usage:
-	text_compactor <input_file> -o <output_file> -c <config> [options]
+	text_compactor -i <input_file> -o <output_file> -c <config_file> [options]
 
 
 <input_file>	input file with text to be summarized
 <output_file>	output file with summarized text
-<config>	config file in .ini format, see help for more details
+<config_file>	config file in .ini format, see help for more details
 
 
 General options:

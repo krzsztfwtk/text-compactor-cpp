@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cctype>
 #include <sstream>
-#include <unordered_map>
 
 ArgsParser::ArgsParser(int argc, char** argv)
 {
@@ -14,6 +13,8 @@ ArgsParser::ArgsParser(int argc, char** argv)
     loadArgs();
     loadConfig();
 }
+
+ArgsParser::~ArgsParser() { ; }
 
 void ArgsParser::loadArgs()
 {
@@ -83,15 +84,18 @@ void ArgsParser::loadConfig()
                     wordlist_filenames_with_weights_.
                     push_back({wordlist_filename, weight});
                 }
-            } else if (key == "capitalBoost")
+            } else if (key == "capitalNamesBoost")
             {
-                capital_boost_ = std::stoi(value);
+                capital_names_boost_ = std::stoi(value);
             } else if (key == "minTfidf")
             {
                 minimum_tfidf_ = std::stoi(value);
             } else if (key == "taggs")
             {
                 taggs_number_ = std::stoi(value);
+            } else if (key == "stopWordsList")
+            {
+                stop_words_filename_ = value;
             }
         }
     }
@@ -128,9 +132,14 @@ std::vector<std::pair<std::string, int>> ArgsParser::getWordlistFilenames() cons
     return wordlist_filenames_with_weights_;
 }
 
-int ArgsParser::getCapitalBoost() const
+std::string ArgsParser::getStopWordsFilename() const
 {
-    return capital_boost_;
+    return stop_words_filename_;
+}
+
+int ArgsParser::getCapitalNamesBoost() const
+{
+    return capital_names_boost_;
 }
 
 unsigned int ArgsParser::getMinimumTFIDF() const
