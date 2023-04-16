@@ -28,7 +28,8 @@ text_compactor -i <input_file> -o <output_file> -c <config_file> [options]
 To specify the configuration, create a config.ini file with the following parameters:
 
 ```ini
-# LANGUAGE
+# <config_file>
+#
 # files with wordlist
 # n is the number of files 
 # w0, w1, ..., wn are the weights of the files
@@ -48,7 +49,6 @@ capitaNamesBoost=i
 # not required to specify
 stopWordsList=file_with_stop_words
 
-# OUTPUT
 # number of minimum tfidf: higher number the shorter output text will [default=500]
 minTfidf=500
 
@@ -67,13 +67,22 @@ key = value #incorrect
 
 ```text
 #wordlist.txt
-water 177624
-only 232340
-body 109562
-king 124390
-number 109630
-year 115896
-great 277788
+
+years year 102789
+made make 224981
+air air 102040
+parts part 126654
+called call 154533
+most most 112266
+many many 155628
+see see 118853
+water water 177624
+only only 232340
+body body 109562
+king king 124390
+number number 109630
+year year 115896
+great great 277788
 ...
 ```
 
@@ -111,14 +120,14 @@ were still dipping themselves in the river and hurrying away.
 ```
 
 ```bash
-#usage in command line
-text_compactor -i text.txt -o output.txt -c config.ini
+#run in command line
+text_compactor -i text.txt -o result.out -c config.ini
 ```
 
 ```text
-#output.txt
+#result.out
 
-#brahmpur #nnooring #colourful #commandeered #ganga #scissors 
+#brahmpur #nnooring #colourful #commandeered #ganga
 
 Because the launch needed a deeper draught than a regular boat,
 it was difficult to land it on the shallow bank of the Ganga.
