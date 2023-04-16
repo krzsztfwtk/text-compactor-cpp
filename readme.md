@@ -96,7 +96,18 @@ taggs=5
 ```text
 #text.txt
 
-Because the launch needed a deeper draught than a regular boat, it was difficult to land it on the shallow bank of the Ganga. The captain finally resorted to the expedient of nnooring it to a chain of boats, which he in effect commandeered. By the time the launch was moored, more than three-quarters of an hour had passed. The crowds at the main bathing areas on the Brahmpur side had thinned to almost nothing. The news of the disaster had spread swiftly. The bathing posts with their colourful signs—parrot, peacock, bear, scissors, mountain, trident and so on—were almost deserted. A few people, in a restrained, almost fearful way, were still dipping themselves in the river and hurrying away. 
+Because the launch needed a deeper draught than a regular boat, 
+it was difficult to land it on the shallow bank of the Ganga. 
+The captain finally resorted to the expedient of nnooring it 
+to a chain of boats, which he in effect commandeered. 
+By the time the launch was moored, more than three-quarters 
+of an hour had passed. The crowds at the main bathing areas 
+on the Brahmpur side had thinned to almost nothing. 
+The news of the disaster had spread swiftly. The bathing 
+posts with their colourful signs—parrot, peacock, bear, 
+scissors, mountain, trident and so on—were almost deserted. 
+A few people, in a restrained, almost fearful way, 
+were still dipping themselves in the river and hurrying away. 
 ```
 
 ```bash
@@ -107,5 +118,15 @@ text_compactor -i text.txt -o output.txt -c config.ini
 ```text
 #output.txt
 
-The crowds at the main bathing areas on the Brahmpur side had thinned to almost nothing. The news of the disaster had spread swiftly. A few people, in a restrained, almost fearful way, were still dipping themselves in the river and hurrying away.
+#brahmpur #nnooring #colourful #commandeered #ganga #scissors 
+
+Because the launch needed a deeper draught than a regular boat,
+it was difficult to land it on the shallow bank of the Ganga.
+The captain finally resorted to the expedient of nnooring it
+to a chain of boats, which he in effect commandeered. The crowds
+at the main bathing areas on the Brahmpur side had thinned to
+almost nothing. The news of the disaster had spread swiftly.
+The bathing posts with their colourful signs—parrot, peacock,
+bear, scissors, mountain, trident and so on—were almost deserted.
+
 ```
