@@ -3,6 +3,7 @@
 Explanation for newbies
 
 ## Let's understand 3 concepts
+
 ---
 Stop words:
 | Stop Words | Non-Stop Words |
@@ -45,6 +46,8 @@ $$
 $$
 
 where $\operatorname{tf}(t, d)$ is the term frequency of term $t$ in document $d$, and $\operatorname{idf}(t)$ is the inverse document frequency of term $t$.
+
+**Simplified**: Important words are those that occur frequently in the analyzed text, but rarely in the language of the text.
 
 ---
 
