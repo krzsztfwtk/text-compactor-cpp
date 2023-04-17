@@ -19,18 +19,9 @@ Lemmatization:
 
 | Word | Lemmatized Word |
 |-----------|----------------|
-| him       | he             |
 | parts     | part           |
-| has       | have           |
 | called    | call           |
-| i         | I              |
-| are       | be             |
-| is        | be             |
-| were      | be             |
-| been      | be             |
 | found     | find           |
-| had       | have           |
-| having    | have           |
 | years     | year           |
 | made      | make           |
 | was       | be             |
