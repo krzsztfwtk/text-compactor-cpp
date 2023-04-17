@@ -89,7 +89,8 @@ great great 277788
 ```text
 #stop_words.txt 
 
-or the by in be and he are with is which it to that as of was a
+or the by in be and he are with 
+is which it to that as of was a
 ```
 
 ```ini
@@ -121,11 +122,11 @@ were still dipping themselves in the river and hurrying away.
 
 ```bash
 #run in command line
-text_compactor -i text.txt -o result.out -c config.ini
+text_compactor -i text.txt -o summary.out -c config.ini
 ```
 
 ```text
-#result.out
+#summary.out
 
 #brahmpur #nnooring #colourful #commandeered #ganga
 
