@@ -13,8 +13,10 @@ text_compactor -i <input_file> -o <output_file> -c <config_file> [options]
 ```text
 <input_file>    input file with text to be summarized  
 <output_file>   output file with summarized text  
-<config_file>   config file in .ini format
+<config_file>   config file in .json or .ini format
 ```
+
+The usage of the program requires the [-c \<config_file>] parameter, while [-i \<input_file>] and [-o \<output_file>] parameters are optional. If you do not specify an input file, the program will prompt you to enter text in the terminal window. If you do not specify an output file, the program will display the result in the terminal window.
 
 ## General Options
 
@@ -25,38 +27,97 @@ text_compactor -i <input_file> -o <output_file> -c <config_file> [options]
 
 ## Configuration
 
-To specify the configuration, create a config.ini file with the following parameters:
+To specify the configuration, create a config.ini or config.json file with the following parameters:
 
-```ini
-# <config_file>
-#
-# files with wordlist
-# n is the number of files 
-# w0, w1, ..., wn are the weights of the files
-# files should be in format:
-# <word> <lemmatized_word> <count>
-# example:
-# caring care 102
-wordlist=n file_0 w0 file_1 w1 ... file_n wn
+```text
+wordlist files: files which will be used to calculate term frequency by program.
 
-# boost importance of capital names -100<i<100 [default=0]
-capitalNamesBoost=i
+Required
 
-# file with separated stop words
-# example:
-# then that a an has  
-#
-# not required to specify
-stopWordsList=file_with_stop_words
+Files should be in format:
+<word> <lemmatized> <number>
+example:
+caring care 158
 
-# number of minimum tfidf: higher number the shorter output text will [default=500]
-minTfidf=500
+you can specify one or more wordlist files
+you should also specify their weights
+example:
+    "wordlist": {
+        "file_0": 0, //file_0 will not be taken into account
+        "file_1": 1, //
+        "file_2": 2  //file_2 is 2 times more important than file_0
+    },
 
-# taggs of tags about text to be printed [default=0]
-taggs=0
+you can check where to get such a file in /help
 ```
 
-Remember about the correct syntax for the configuration file:
+```text
+capitalNamesBoost: boost importance of capital names.
+[default=0]
+
+Not required
+
+Value should be an integer i: -100 < i < 100
+```
+
+```text
+stopWordsList: file with stop separated words.
+
+Not required
+
+file should look like:
+or the by in be and he are with ...
+```
+
+```text
+minTfidf: minimum average TF-IDF coefficient for sentences.
+[default=1000]
+
+Not required
+
+Value should be an double d: d > 0
+
+Larger the coefficient, the longer the summarized text will be
+and fewer sentences will be deleted.
+```
+
+```text
+tags: number of tags which will be displayed next to summarized text
+[default=0]
+
+Not required
+
+Value should be an integer i: i > 0
+
+tags will be words with highest TF-IDF coefficient in text.
+```
+
+```json
+//config.json
+{
+    "wordlist": {
+        "file_0": 0,
+        "file_1": 1,
+        "file_2": 2
+    },
+    "capitalNamesBoost": 1,
+    "stopWordsList": "stop_words_file",
+    "minTfidf": 600,
+    "tags": 5
+}
+```
+
+```ini
+# config.ini
+
+wordlist=file_0 0 file_1 1 file_2 2
+capitalNamesBoost=1
+stopWordsList=file_with_stop_words
+minTfidf=600
+tags=5
+```
+
+Remember about the correct syntax for the .ini configuration file:
 
 ```ini
 key=value #correct
@@ -66,7 +127,7 @@ key = value #incorrect
 ## Example setup
 
 ```text
-#wordlist.txt
+//wordlist.txt
 
 years year 102789
 made make 224981
@@ -87,24 +148,29 @@ great great 277788
 ```
 
 ```text
-#stop_words.txt 
+//stop_words.txt 
 
 or the by in be and he are with 
 is which it to that as of was a
 ```
 
-```ini
-#config.ini
+```json
+//config.json
 
-wordlist=1 wordlist.txt
-capitaNamesBoost=3
-stopWordsList=stop_words.txt
-minTfidf=1000
-taggs=5
+{
+  "wordlist": {
+    "wordlist.txt": 1,
+  },
+  "capitalNamesBoost": 3,
+  "stopWordsList": "stop_words.txt",
+  "minTfidf": 1000,
+  "tags": 5
+}
+
 ```
 
 ```text
-#text.txt
+//text.txt
 
 Because the launch needed a deeper draught than a regular boat, 
 it was difficult to land it on the shallow bank of the Ganga. 
@@ -126,7 +192,7 @@ text_compactor -i text.txt -o summary.out -c config.ini
 ```
 
 ```text
-#summary.out
+//summary.out
 
 #brahmpur #nnooring #colourful #commandeered #ganga
 

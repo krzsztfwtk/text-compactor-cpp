@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS =-std=c++20 -Wall -Wextra -pedantic-errors -O3
 
-SRCDIR = src
+SRCDIR = sources
 BINDIR = bin
 EXEC = $(BINDIR)/main
 SRCS = $(wildcard $(SRCDIR)/*.cpp)

@@ -3,10 +3,11 @@
 #include <string>
 #include <vector>
 
-class ArgsParser {
+
+class Parser {
 public:
-    ArgsParser(int argc, char** argv);
-    ~ArgsParser();
+    Parser(int argc, char** argv);
+    ~Parser();
 
     std::string getInputFilename() const;
     std::string getOutputFilename() const;
@@ -23,7 +24,8 @@ private:
     int argc_;
     char** argv_;
     void loadArgs();
-    void loadConfig();
+    void loadIniConfig();
+    void loadJsonConfig();
 
     std::string input_filename_;
     std::string output_filename_;
@@ -35,9 +37,8 @@ private:
     std::string stop_words_filename_ = "";
     int capital_names_boost_ = 0;
     unsigned int minimum_tfidf_ = 500;
-    unsigned int taggs_number_ = 0;
+    unsigned int tags_number_ = 0;
 
-    std::string usage_text_;
     std::string help_text_;
 
     void printUsage() const;

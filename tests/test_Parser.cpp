@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "../src/ArgsParser.h"
+#include "../sources/Parser.h"
 #include <vector>
 
 /////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@ TEST_CASE("(1)ArgsParser initializes member variables correctly [basic]") {
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
     (char*)"-c", (char*)"config_file.ini"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -28,7 +28,7 @@ TEST_CASE("(2)ArgsParser initializes member variables correctly [different names
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -43,7 +43,7 @@ TEST_CASE("(3)ArgsParser initializes member variables correctly [different order
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -59,7 +59,7 @@ TEST_CASE("(4)ArgsParser initializes member variables correctly [redundants]") {
     (char*)"file.out", (char*)"hello", (char*)"world",
     (char*)"-i", (char*)"file.in",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -76,7 +76,7 @@ TEST_CASE("(5)ArgsParser initializes member variables correctly [duplicates]") {
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"-c", (char*)"config_file.ini"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -92,7 +92,7 @@ TEST_CASE("(6)ArgsParser initializes member variables correctly [-i last]") {
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"-c", (char*)"config_file.ini", (char*)"-i"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -108,7 +108,7 @@ TEST_CASE("(7)ArgsParser initializes member variables correctly [-o last]") {
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"-c", (char*)"config_file.ini", (char*)"-o"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -124,7 +124,7 @@ TEST_CASE("(8)ArgsParser initializes member variables correctly [-c last]") {
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"-c", (char*)"config_file.ini", (char*)"-c"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -140,7 +140,7 @@ TEST_CASE("(9)ArgsParser initializes member variables correctly [-z last]") {
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt", 
     (char*)"-c", (char*)"config_file.ini", (char*)"-z"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
@@ -155,7 +155,7 @@ TEST_CASE("(10)ArgsParser initializes member variables correctly [-h last]") {
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config", (char*)"-h"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -170,7 +170,7 @@ TEST_CASE("(11)ArgsParser initializes member variables correctly [-h middle]") {
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out", (char*)"-h",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -185,7 +185,7 @@ TEST_CASE("(12)ArgsParser initializes member variables correctly [--help last]")
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config", (char*)"--help"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -200,7 +200,7 @@ TEST_CASE("(13)ArgsParser initializes member variables correctly [--help middle]
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out", (char*)"--help",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -215,7 +215,7 @@ TEST_CASE("(14)ArgsParser initializes member variables correctly [-v last]") {
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config", (char*)"-v"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -230,7 +230,7 @@ TEST_CASE("(15)ArgsParser initializes member variables correctly [-v middle]") {
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out", (char*)"-v",
     (char*)"-c", (char*)"file.config"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -245,7 +245,7 @@ TEST_CASE("(16)ArgsParser initializes member variables correctly [--verbose last
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out",
     (char*)"-c", (char*)"file.config", (char*)"--verbose"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -260,7 +260,7 @@ TEST_CASE("(17)ArgsParser initializes member variables correctly [---verbose and
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out", (char*)"--verbose",
     (char*)"-c", (char*)"file.config", (char*)"--help"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -275,7 +275,7 @@ TEST_CASE("(18)ArgsParser initializes member variables correctly [--v and --h]")
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"file.in", (char*)"-o", (char*)"file.out", (char*)"-h",
     (char*)"-c", (char*)"file.config", (char*)"-v"};
-    ArgsParser parser(argc, argv);
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "file.in");
     REQUIRE(parser.getOutputFilename() == "file.out");
@@ -292,12 +292,12 @@ TEST_CASE("(1)ArgsParser loads config correctly [evrything specified]") {
     int argc = 8;
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
-    (char*)"-c", (char*)"example_config_1.ini", (char*)"-v"};
-    ArgsParser parser(argc, argv);
+    (char*)"-c", (char*)"test_configs/test_config_1.ini", (char*)"-v"};
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
-    REQUIRE(parser.getConfigFilename() == "example_config_1.ini");
+    REQUIRE(parser.getConfigFilename() == "test_configs/test_config_1.ini");
     REQUIRE(parser.isHelp() == false);
     REQUIRE(parser.isVerbose() == true);
 
@@ -318,12 +318,12 @@ TEST_CASE("(2)ArgsParser loads config correctly [defaults]") {
     int argc = 8;
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
-    (char*)"-c", (char*)"example_config_2.ini", (char*)"-v"};
-    ArgsParser parser(argc, argv);
+    (char*)"-c", (char*)"test_configs/test_config_2.ini", (char*)"-v"};
+    Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
-    REQUIRE(parser.getConfigFilename() == "example_config_2.ini");
+    REQUIRE(parser.getConfigFilename() == "test_configs/test_config_2.ini");
     REQUIRE(parser.isHelp() == false);
     REQUIRE(parser.isVerbose() == true);
 
