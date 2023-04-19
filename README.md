@@ -40,7 +40,7 @@ To specify the configuration, create a config.ini file with the following parame
 wordlist=n file_0 w0 file_1 w1 ... file_n wn
 
 # boost importance of capital names -100<i<100 [default=0]
-capitaNamesBoost=i
+capitalNamesBoost=i
 
 # file with separated stop words
 # example:
