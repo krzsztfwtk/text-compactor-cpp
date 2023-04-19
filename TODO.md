@@ -26,8 +26,7 @@ Classes:
 - Show TF-IDF for each sentence
 - .json
 - narodowy korpus j. polskiego
-- dlugosc w znakach (dla sprawdzenia wyniku)
-- bm25
+- dlugosc w znakach (dla sprawdzenia wyniku)- bm25
 - miara Dacjarda
 - operatory lista
 - operator rzutowania
