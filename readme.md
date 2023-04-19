@@ -40,7 +40,7 @@ To specify the configuration, create a config.ini file with the following parame
 wordlist=n file_0 w0 file_1 w1 ... file_n wn
 
 # boost importance of capital names -100<i<100 [default=0]
-capitalNamesBoost=i
+capitaNamesBoost=i
 
 # file with separated stop words
 # example:
@@ -89,8 +89,7 @@ great great 277788
 ```text
 #stop_words.txt 
 
-or the by in be and he are with 
-is which it to that as of was a
+or the by in be and he are with is which it to that as of was a
 ```
 
 ```ini
@@ -122,11 +121,11 @@ were still dipping themselves in the river and hurrying away.
 
 ```bash
 #run in command line
-text_compactor -i text.txt -o summary.out -c config.ini
+text_compactor -i text.txt -o result.out -c config.ini
 ```
 
 ```text
-#summary.out
+#result.out
 
 #brahmpur #nnooring #colourful #commandeered #ganga
 
