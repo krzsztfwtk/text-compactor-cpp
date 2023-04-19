@@ -188,7 +188,7 @@ were still dipping themselves in the river and hurrying away.
 
 ```bash
 #run in command line
-text_compactor -i text.txt -o summary.out -c config.ini
+text_compactor -i text.txt -o summary.out -c config.json
 ```
 
 ```text
