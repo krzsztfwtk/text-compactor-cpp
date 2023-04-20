@@ -6,7 +6,7 @@ Usage:
 
 <input_file>	input file with text to be summarized
 <output_file>	output file with summarized text
-<config_file>	config file in format key=value in each line, use # for comments, lines starting with # will be ignored
+<config_file>	config file in format key=value in each line, use # or ; for comments, lines starting with # will be ignored
 
 
 to specify in config.json or config.ini:

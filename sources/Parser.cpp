@@ -79,7 +79,7 @@ void Parser::loadIniConfig()
     while (std::getline(config_file, line)) 
     {
         // Ignore comments and blank lines
-        if (line.empty() || line[0] == '#') 
+        if (line.empty() || line[0] == '#' || line[0] == ';') 
         {
             continue;
         }
@@ -122,7 +122,7 @@ void Parser::loadIniConfig()
 
 void Parser::loadJsonConfig()
 {
-
+    ;
 }
 
 std::string Parser::getInputFilename() const 
@@ -206,7 +206,7 @@ void Parser::printHelp() const
 
     <input_file>    input file with text to be summarized
     <output_file>    output file with summarized text
-    <config_file>    config file in format key=value in each line, use # for comments, lines starting with # will be ignored
+    <config_file>    config file in format key=value in each line, use # or ; for comments, lines starting with # will be ignored
 
 
     to specify in config.json or config.ini:
