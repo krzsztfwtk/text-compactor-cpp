@@ -4,13 +4,19 @@
 
 class Word {
 public:
-    Word(unsigned int df);
-    ~Word();
-    std::string word_str_;
-    // unsigned int df_;
-    // double idf_;
-    // unsigned int tf;
-    // unsigned int tf_idf;
-    // bool is_stop_word_;
-    Word* lemmatization_;
+    Word(const std::string& name, const std::string& lemmatization, 
+    unsigned int idf);
+
+    std::string getName() const;
+    std::string getLemmatization() const;
+    unsigned int getIDF() const;
+
+    void setName(const std::string& name);
+    void setLemmatization(const std::string& lemmatization);
+    void setIDF(unsigned int idf);
+
+private:
+    std::string name_;
+    std::string lemmatization_;
+    unsigned int idf_;
 };

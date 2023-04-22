@@ -1,0 +1,10 @@
+{
+    "capitalNamesBoost": 7,
+    "wordlist": {
+        "wikipedia-en.txt": 1,
+        "gutenberg.in": 2
+    },
+    "stopWordsList": "words.stop",
+    "minTfidf": 1,
+    "tags": 1
+}

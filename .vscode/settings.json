@@ -65,6 +65,10 @@
         "iterator": "cpp",
         "memory_resource": "cpp",
         "random": "cpp",
-        "__nullptr": "cpp"
+        "__nullptr": "cpp",
+        "list": "cpp",
+        "unordered_set": "cpp",
+        "cinttypes": "cpp",
+        "filesystem": "cpp"
     }
 }

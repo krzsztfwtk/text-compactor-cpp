@@ -1,4 +1,5 @@
 #include "Parser.h"
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -6,14 +7,11 @@
 #include <cctype>
 #include <sstream>
 
-Parser::Parser(int argc, char** argv)
+Parser::Parser(int argc, char** argv) 
 {
     this->argc_=argc;
     this->argv_=argv;
     loadArgs();
-    
-    std::string config_file_extension = 
-    config_filename_.substr(config_filename_.find_last_of(".") + 1);
 
     if (help_)
     {
@@ -21,9 +19,19 @@ Parser::Parser(int argc, char** argv)
         return;
     }
 
+    std::string config_file_extension = 
+    config_filename_.substr(config_filename_.find_last_of(".") + 1);
+
     if (config_file_extension == "json") {
-        // loadJsonConfig();
-        ;
+        std::ifstream config_file(config_filename_);
+        if (config_file) {
+           loadJsonConfig(); 
+        }
+        else {
+            std::cout << "ERROR: There is no file: " << 
+            config_filename_ << std::endl;
+            return;
+        }
     } else if (config_file_extension == "ini") {
         loadIniConfig();
     } else {
@@ -73,7 +81,7 @@ void Parser::loadIniConfig()
 
     if(isVerbose())
     {
-        std::cout << "loading config:" << config_filename_;
+        std::cout << "loading config:" << config_filename_ << std::endl;
     }
 
     while (std::getline(config_file, line)) 
@@ -122,7 +130,81 @@ void Parser::loadIniConfig()
 
 void Parser::loadJsonConfig()
 {
-    ;
+    std::ifstream config_file(config_filename_);
+
+    if (isVerbose())
+    {
+        std::cout << "Loading config: " << config_filename_ << std::endl;
+    }
+
+    std::string line;
+    std::string key, value;
+
+    while (std::getline(config_file, line))
+    {
+        // Remove whitespaces from the line
+        line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
+
+        // Ignore comments and empty lines
+        if (line.empty() || line[0] == '/' || line[0] == '*')
+        {
+            continue;
+        }
+
+        // Extract key-value pairs
+        size_t colon_pos = line.find(':');
+        size_t comma_pos = line.find(',');
+
+        if (colon_pos != std::string::npos)
+        {
+            key = line.substr(0, colon_pos);
+            value = line.substr(colon_pos + 1, comma_pos - colon_pos - 1);
+
+            // Remove quotes if present
+            if (value.front() == '"' && value.back() == '"')
+            {
+                value = value.substr(1, value.length() - 2);
+            }
+
+            if (key == "\"wordlist\"")
+            {
+                wordlist_filenames_with_weights_.clear();
+                while (std::getline(config_file, line))
+                {
+                    line.erase(remove_if(line.begin(), line.end(), isspace), line.end());
+
+                    if (line[0] == '}')
+                    {
+                        break;
+                    }
+
+                    colon_pos = line.find(':');
+                    comma_pos = line.find(',');
+
+                    std::string file_key = line.substr(0, colon_pos);
+                    int weight = std::stoi(line.substr(colon_pos + 1, comma_pos - colon_pos - 1));
+
+                    wordlist_filenames_with_weights_.push_back({file_key.substr(1, file_key.length() - 2), weight});
+                }
+            }
+            else if (key == "\"capitalNamesBoost\"")
+            {
+                capital_names_boost_ = std::stoi(value);
+            }
+            else if (key == "\"stopWordsList\"")
+            {
+                stop_words_filename_ = value;
+            }
+            else if (key == "\"minTfidf\"")
+            {
+                minimum_tfidf_ = std::stoi(value);
+            }
+            else if (key == "\"tags\"")
+            {
+                tags_number_ = std::stoi(value);
+            }
+        }
+    }
 }
 
 std::string Parser::getInputFilename() const 

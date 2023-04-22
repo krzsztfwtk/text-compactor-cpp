@@ -288,16 +288,16 @@ TEST_CASE("(18)ArgsParser initializes member variables correctly [--v and --h]")
 //////////////////////CONFIG ASSIGNMENT//////////////////////////////
 /////////////////////////////////////////////////////////////////////
 
-TEST_CASE("(1)ArgsParser loads config correctly [evrything specified]") {
+TEST_CASE("(1)ArgsParser loads config correctly .ini [evrything specified]") {
     int argc = 8;
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
-    (char*)"-c", (char*)"test_configs/test_config_1.ini", (char*)"-v"};
+    (char*)"-c", (char*)"test_input_files/test_config_1.ini", (char*)"-v"};
     Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
-    REQUIRE(parser.getConfigFilename() == "test_configs/test_config_1.ini");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_1.ini");
     REQUIRE(parser.isHelp() == false);
     REQUIRE(parser.isVerbose() == true);
 
@@ -314,16 +314,16 @@ TEST_CASE("(1)ArgsParser loads config correctly [evrything specified]") {
     REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
 }
 
-TEST_CASE("(2)ArgsParser loads config correctly [defaults]") {
+TEST_CASE("(2)ArgsParser loads config correctly .ini [defaults]") {
     int argc = 8;
     char* argv[] = {(char*)"program_name", (char*)"-i", 
     (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
-    (char*)"-c", (char*)"test_configs/test_config_2.ini", (char*)"-v"};
+    (char*)"-c", (char*)"test_input_files/test_config_2.ini", (char*)"-v"};
     Parser parser(argc, argv);
 
     REQUIRE(parser.getInputFilename() == "input_file.txt");
     REQUIRE(parser.getOutputFilename() == "output_file.txt");
-    REQUIRE(parser.getConfigFilename() == "test_configs/test_config_2.ini");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_2.ini");
     REQUIRE(parser.isHelp() == false);
     REQUIRE(parser.isVerbose() == true);
 
@@ -338,4 +338,194 @@ TEST_CASE("(2)ArgsParser loads config correctly [defaults]") {
     REQUIRE(parser.getMinimumTFIDF() == 500);
     REQUIRE(parser.getNumberOfTags() == 0);
     REQUIRE(parser.getStopWordsFilename() == "");
+}
+
+TEST_CASE("(3)ArgsParser loads config correctly .json [everything specified]") {
+    int argc = 8;
+    char* argv[] = {(char*)"program_name", (char*)"-i", 
+    (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+    (char*)"-c", (char*)"test_input_files/test_config_1.json", (char*)"-v"};
+    Parser parser(argc, argv);
+
+    REQUIRE(parser.getInputFilename() == "input_file.txt");
+    REQUIRE(parser.getOutputFilename() == "output_file.txt");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_1.json");
+    REQUIRE(parser.isHelp() == false);
+    REQUIRE(parser.isVerbose() == true);
+
+    REQUIRE(parser.getWordlistFilenames()[0].first == "file_0");
+    REQUIRE(parser.getWordlistFilenames()[0].second == 0);
+    REQUIRE(parser.getWordlistFilenames()[1].first == "file_1");
+    REQUIRE(parser.getWordlistFilenames()[1].second == 1);
+    REQUIRE(parser.getWordlistFilenames()[2].first == "file_2");
+    REQUIRE(parser.getWordlistFilenames()[2].second == 2);
+
+    REQUIRE(parser.getCapitalNamesBoost() == 1);
+    REQUIRE(parser.getMinimumTFIDF() == 600);
+    REQUIRE(parser.getNumberOfTags() == 5);
+    REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
+}
+
+TEST_CASE("(4)ArgsParser loads config correctly .json [defaults]") {
+    int argc = 8;
+    char* argv[] = {(char*)"program_name", (char*)"-i", 
+    (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+    (char*)"-c", (char*)"test_input_files/test_config_2.json", (char*)"-v"};
+    Parser parser(argc, argv);
+
+    REQUIRE(parser.getInputFilename() == "input_file.txt");
+    REQUIRE(parser.getOutputFilename() == "output_file.txt");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_2.json");
+    REQUIRE(parser.isHelp() == false);
+    REQUIRE(parser.isVerbose() == true);
+
+    REQUIRE(parser.getWordlistFilenames()[0].first == "file_0");
+    REQUIRE(parser.getWordlistFilenames()[0].second == 0);
+    REQUIRE(parser.getWordlistFilenames()[1].first == "file_1");
+    REQUIRE(parser.getWordlistFilenames()[1].second == 1);
+    REQUIRE(parser.getWordlistFilenames()[2].first == "file_2");
+    REQUIRE(parser.getWordlistFilenames()[2].second == 2);
+
+    REQUIRE(parser.getCapitalNamesBoost() == 0);
+    REQUIRE(parser.getMinimumTFIDF() == 500);
+    REQUIRE(parser.getNumberOfTags() == 0);
+    REQUIRE(parser.getStopWordsFilename() == "");
+}
+
+TEST_CASE("(5)ArgsParser loads config correctly .json [everything specified, different order]") {
+    int argc = 8;
+    char* argv[] = {(char*)"program_name", (char*)"-i", 
+    (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+    (char*)"-c", (char*)"test_input_files/test_config_3.json", (char*)"-v"};
+    Parser parser(argc, argv);
+
+    REQUIRE(parser.getInputFilename() == "input_file.txt");
+    REQUIRE(parser.getOutputFilename() == "output_file.txt");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_3.json");
+    REQUIRE(parser.isHelp() == false);
+    REQUIRE(parser.isVerbose() == true);
+
+    REQUIRE(parser.getWordlistFilenames()[0].first == "file_0");
+    REQUIRE(parser.getWordlistFilenames()[0].second == 0);
+    REQUIRE(parser.getWordlistFilenames()[1].first == "file_1");
+    REQUIRE(parser.getWordlistFilenames()[1].second == 1);
+    REQUIRE(parser.getWordlistFilenames()[2].first == "file_2");
+    REQUIRE(parser.getWordlistFilenames()[2].second == 2);
+
+    REQUIRE(parser.getCapitalNamesBoost() == 1);
+    REQUIRE(parser.getMinimumTFIDF() == 600);
+    REQUIRE(parser.getNumberOfTags() == 5);
+    REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
+}
+
+TEST_CASE("(6)ArgsParser loads config correctly .json [different worlist filer order]") {
+    {
+        int argc = 8;
+        char* argv[] = {(char*)"program_name", (char*)"-i", 
+        (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+        (char*)"-c", (char*)"test_input_files/test_config_4.json", (char*)"-v"};
+        Parser parser(argc, argv);
+
+        REQUIRE(parser.getInputFilename() == "input_file.txt");
+        REQUIRE(parser.getOutputFilename() == "output_file.txt");
+        REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_4.json");
+        REQUIRE(parser.isHelp() == false);
+        REQUIRE(parser.isVerbose() == true);
+
+        REQUIRE(parser.getWordlistFilenames()[0].first == "file_2");
+        REQUIRE(parser.getWordlistFilenames()[0].second == 2);
+
+        REQUIRE(parser.getCapitalNamesBoost() == 1);
+        REQUIRE(parser.getMinimumTFIDF() == 600);
+        REQUIRE(parser.getNumberOfTags() == 5);
+        REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
+    }
+
+    {
+        int argc = 8;
+        char* argv[] = {(char*)"program_name", (char*)"-i", 
+        (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+        (char*)"-c", (char*)"test_input_files/test_config_5.json", (char*)"-v"};
+        Parser parser(argc, argv);
+
+        REQUIRE(parser.getInputFilename() == "input_file.txt");
+        REQUIRE(parser.getOutputFilename() == "output_file.txt");
+        REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_5.json");
+        REQUIRE(parser.isHelp() == false);
+        REQUIRE(parser.isVerbose() == true);
+
+        REQUIRE(parser.getWordlistFilenames()[0].first == "file_0");
+        REQUIRE(parser.getWordlistFilenames()[0].second == 0);
+        REQUIRE(parser.getWordlistFilenames()[1].first == "file_1");
+        REQUIRE(parser.getWordlistFilenames()[1].second == 1);
+        REQUIRE(parser.getWordlistFilenames()[2].first == "file_2");
+        REQUIRE(parser.getWordlistFilenames()[2].second == 2);
+        REQUIRE(parser.getWordlistFilenames()[3].first == "file_3");
+        REQUIRE(parser.getWordlistFilenames()[3].second == 3);
+        REQUIRE(parser.getWordlistFilenames()[4].first == "file_4");
+        REQUIRE(parser.getWordlistFilenames()[4].second == 4);
+        REQUIRE(parser.getWordlistFilenames()[5].first == "next_file");
+        REQUIRE(parser.getWordlistFilenames()[5].second == 137);
+
+        REQUIRE(parser.getCapitalNamesBoost() == 1);
+        REQUIRE(parser.getMinimumTFIDF() == 600);
+        REQUIRE(parser.getNumberOfTags() == 5);
+        REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
+    }
+
+    {
+        int argc = 8;
+        char* argv[] = {(char*)"program_name", (char*)"-i", 
+        (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+        (char*)"-c", (char*)"test_input_files/test_config_6.json", (char*)"-v"};
+        Parser parser(argc, argv);
+
+        REQUIRE(parser.getInputFilename() == "input_file.txt");
+        REQUIRE(parser.getOutputFilename() == "output_file.txt");
+        REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_6.json");
+        REQUIRE(parser.isHelp() == false);
+        REQUIRE(parser.isVerbose() == true);
+
+        REQUIRE(parser.getWordlistFilenames()[0].first == "file_0");
+        REQUIRE(parser.getWordlistFilenames()[0].second == 0);
+        REQUIRE(parser.getWordlistFilenames()[1].first == "file_1");
+        REQUIRE(parser.getWordlistFilenames()[1].second == 1);
+        REQUIRE(parser.getWordlistFilenames()[2].first == "file_2");
+        REQUIRE(parser.getWordlistFilenames()[2].second == 2);
+        REQUIRE(parser.getWordlistFilenames()[3].first == "file_3");
+        REQUIRE(parser.getWordlistFilenames()[3].second == 3);
+        REQUIRE(parser.getWordlistFilenames()[4].first == "file_4");
+        REQUIRE(parser.getWordlistFilenames()[4].second == 4);
+        REQUIRE(parser.getWordlistFilenames()[5].first == "next_file");
+        REQUIRE(parser.getWordlistFilenames()[5].second == 137);
+
+        REQUIRE(parser.getCapitalNamesBoost() == 1);
+        REQUIRE(parser.getMinimumTFIDF() == 600);
+        REQUIRE(parser.getNumberOfTags() == 5);
+        REQUIRE(parser.getStopWordsFilename() == "stop_words.txt");
+    }
+}
+
+TEST_CASE("(7)ArgsParser loads config correctly .json [diverent values]") {
+    int argc = 8;
+    char* argv[] = {(char*)"program_name", (char*)"-i", 
+    (char*)"input_file.txt", (char*)"-o", (char*)"output_file.txt",
+    (char*)"-c", (char*)"test_input_files/test_config_7.json", (char*)"-v"};
+    Parser parser(argc, argv);
+
+    REQUIRE(parser.getInputFilename() == "input_file.txt");
+    REQUIRE(parser.getOutputFilename() == "output_file.txt");
+    REQUIRE(parser.getConfigFilename() == "test_input_files/test_config_7.json");
+    REQUIRE(parser.isHelp() == false);
+    REQUIRE(parser.isVerbose() == true);
+
+    REQUIRE(parser.getWordlistFilenames()[0].first == "wikipedia-en.txt");
+    REQUIRE(parser.getWordlistFilenames()[0].second == 1);
+    REQUIRE(parser.getWordlistFilenames()[1].first == "gutenberg.in");
+    REQUIRE(parser.getWordlistFilenames()[1].second == 2);
+
+    REQUIRE(parser.getCapitalNamesBoost() == 7);
+    REQUIRE(parser.getMinimumTFIDF() == 1);
+    REQUIRE(parser.getNumberOfTags() == 1);
+    REQUIRE(parser.getStopWordsFilename() == "words.stop");
 }

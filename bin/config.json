@@ -1,0 +1,9 @@
+{
+    "capitalNamesBoost": 1,
+    "stopWordsList": "bin/stop_words.txt",
+    "minTfidf": 600,
+    "tags": 5,
+    "wordlist": {
+        "bin/wordlist.txt": 1
+    }
+}
