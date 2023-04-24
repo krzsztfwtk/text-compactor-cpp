@@ -33,7 +33,7 @@ void Sentence::tokenize(Dictionary& dictionary) {
     std::stringstream ss(normalized_text);
     std::string token;
     while (ss >> token) {
-        std::shared_ptr<Word> word = dictionary[token];
+        Word* word = dictionary[token];
 
         if (word) {
             words_.push_back(word);

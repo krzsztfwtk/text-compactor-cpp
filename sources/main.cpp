@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     Parser arguments(argc, argv);
 
     Dictionary language_model
-    (arguments.getWordlistFilenames()[0].first);
+    (arguments.getWordlistFilenames());
 
     StopWords stop_words(arguments.getStopWordsFilename());
 

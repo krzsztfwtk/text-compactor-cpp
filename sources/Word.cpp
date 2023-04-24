@@ -26,3 +26,7 @@ void Word::setLemmatization(const std::string& lemmatization) {
 void Word::setIDF(unsigned int idf) {
     this->idf_ = idf;
 }
+
+void Word::addIdf(unsigned int value) {
+    this->idf_ += value;
+}

@@ -4,6 +4,7 @@
 
 class Word {
 public:
+    Word() = default;
     Word(const std::string& name, const std::string& lemmatization, 
     unsigned int idf);
 
@@ -14,6 +15,7 @@ public:
     void setName(const std::string& name);
     void setLemmatization(const std::string& lemmatization);
     void setIDF(unsigned int idf);
+    void addIdf(unsigned int value);
 
 private:
     std::string name_;

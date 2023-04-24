@@ -1,9 +1,10 @@
 {
+    "wordlist": {
+        "bin/wordlist.txt": 10,
+        "bin/words.txt": 2
+    },
     "capitalNamesBoost": 1,
     "stopWordsList": "bin/stop_words.txt",
     "minTfidf": 600,
-    "tags": 5,
-    "wordlist": {
-        "bin/wordlist.txt": 1
-    }
+    "tags": 5
 }

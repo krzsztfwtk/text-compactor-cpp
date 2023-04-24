@@ -1,4 +1,6 @@
 #include "Dictionary.h"
+#include <fstream>
+#include <iostream>
 
 Dictionary::Dictionary() {}
 
@@ -6,27 +8,53 @@ Dictionary::Dictionary(const std::string& filename) {
     loadFromFile(filename);
 }
 
-void Dictionary::loadFromFile(const std::string& filename) {
-    words_.clear();
+Dictionary::Dictionary(const std::vector<std::pair<std::string, int>>
+& wordlist_filenames_with_weights)
+{
+    loadFromFilesVector(wordlist_filenames_with_weights);
+}
+
+void Dictionary::loadFromFile(const std::string& filename, int weight) {
+    if (weight == 0) {
+        return;
+    }
+
     std::ifstream file(filename);
 
     std::string name, lemmatization;
     unsigned int idf;
 
     while (file >> name >> lemmatization >> idf) {
-        auto pWord = std::make_shared<Word>(name, lemmatization, idf);
-        words_[name] = pWord;
+        if (words_.find(name) == words_.end()) {
+            Word word(name, lemmatization, idf * weight);
+            words_[name] = word;
+        } else {
+            words_[name].addIdf(idf * weight);
+        }
+    }
+}
+
+void Dictionary::loadFromFilesVector(const std::vector
+<std::pair<std::string, int>>& wordlist_filenames_with_weights) {
+    words_.clear();
+
+    for (const auto& [filename, weight] : wordlist_filenames_with_weights) {
+        loadFromFile(filename, weight);
     }
 }
 
 // https://stackoverflow.com/questions/13354394/reading-object-from-const-unordered-map
-std::shared_ptr<Word> Dictionary::operator[](const std::string& key) {
-    return words_[key];
+Word* Dictionary::operator[](const std::string& key) {
+    auto it = words_.find(key);
+    if (it != words_.end()) {
+        return &it->second;
+    }
+    return nullptr;
 }
 
+
 Dictionary& Dictionary::operator+=(const Word& word) {
-    auto word_ptr = std::make_shared<Word>(word);
-    words_[word.getName()] = word_ptr;
+    words_[word.getName()] = word;
     return *this;
 }
 

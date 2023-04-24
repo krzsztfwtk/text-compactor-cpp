@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <list>
+#include <vector>
 #include <memory>
 #include <ostream>
 #include "Word.h"
@@ -13,11 +13,12 @@ public:
 
     std::string getText() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Sentence& sentence);
+    friend std::ostream& operator<<(std::ostream& os, const Sentence& sentence); 
+    //odczyt zapis symetrycznie
 
 private:
     std::string text_;
-    std::list<std::shared_ptr<const Word>> words_;
+    std::vector<Word*> words_;
 
     void tokenize(Dictionary& dictionary);
 };

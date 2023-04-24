@@ -32,3 +32,4 @@ Classes:
 - operator rzutowania
 - page rank clustering
 - staruml modelio
+- symetryczne operatory
