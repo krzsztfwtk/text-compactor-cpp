@@ -1,24 +1,25 @@
 #pragma once
 
-#include <string>
-#include <vector>
 #include <memory>
 #include <ostream>
-#include "Word.h"
+#include <string>
+#include <vector>
+
 #include "Dictionary.h"
+#include "Word.h"
 
 class Sentence {
-public:
-    Sentence(const std::string& text, Dictionary& dictionary);
+ public:
+  Sentence(const std::string& text, Dictionary& dictionary);
 
-    std::string getText() const;
+  std::string getText() const;
 
-    friend std::ostream& operator<<(std::ostream& os, const Sentence& sentence); 
-    //odczyt zapis symetrycznie
+  friend std::ostream& operator<<(std::ostream& os, const Sentence& sentence);
+  // odczyt zapis symetrycznie
 
-private:
-    std::string text_;
-    std::vector<Word*> words_;
+ private:
+  std::string text_;
+  std::vector<Word*> words_;
 
-    void tokenize(Dictionary& dictionary);
+  void tokenize(Dictionary& dictionary);
 };
