@@ -11,6 +11,8 @@ Sentence::Sentence(const std::string& text, Dictionary& dictionary)
 
 std::string Sentence::getText() const { return text_; }
 
+std::vector<Word*> Sentence::getWords() const { return words_; }
+
 std::ostream& operator<<(std::ostream& os, const Sentence& sentence) {
   os << sentence.text_;
   return os;

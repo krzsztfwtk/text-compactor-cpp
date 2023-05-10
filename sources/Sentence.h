@@ -13,6 +13,7 @@ class Sentence {
   Sentence(const std::string& text, Dictionary& dictionary);
 
   std::string getText() const;
+  std::vector<Word*> getWords() const;
 
   friend std::ostream& operator<<(std::ostream& os, const Sentence& sentence);
   // odczyt zapis symetrycznie

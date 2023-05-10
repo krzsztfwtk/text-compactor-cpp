@@ -17,6 +17,7 @@ void TextDocument::loadFromFile(const std::string& filename,
   file.close();
 
   parseSentences(buffer.str(), dictionary);
+  countWords();
 }
 
 std::string TextDocument::getText() const {
@@ -29,6 +30,15 @@ std::string TextDocument::getText() const {
   }
   return result;
 }
+
+unsigned int TextDocument::getWordCount(const Word& word) 
+  { return word_count_[word.getLemmatization()]; }
+
+// unsigned int TextDocument::getWordCount(const std::string& word)
+//   { return word_count_[word]; }
+
+unsigned int TextDocument::getTotalWordCount()
+  { return total_word_count; }
 
 std::list<Sentence> TextDocument::getSentences() const { return sentences_; }
 
@@ -45,5 +55,16 @@ void TextDocument::parseSentences(const std::string& text,
   }
   if (!current_sentence.empty()) {
     sentences_.emplace_back(current_sentence, dictionary);
+  }
+}
+
+void TextDocument::countWords() {
+  for (Sentence sentence : sentences_)
+  {
+    for (Word* word : sentence.getWords())
+    {
+      word_count_[word->getLemmatization()]++;
+      total_word_count++;
+    }
   }
 }

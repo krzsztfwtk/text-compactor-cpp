@@ -20,14 +20,14 @@ void Dictionary::loadFromFile(const std::string& filename, int weight) {
   std::ifstream file(filename);
 
   std::string name, lemmatization;
-  unsigned int idf;
+  unsigned int df;
 
-  while (file >> name >> lemmatization >> idf) {
+  while (file >> name >> lemmatization >> df) {
     if (words_.find(name) == words_.end()) {
-      Word word(name, lemmatization, idf * weight);
+      Word word(name, lemmatization, df * weight);
       words_[name] = word;
     } else {
-      words_[name].addIdf(idf * weight);
+      words_[name].addDF(df * weight);
     }
   }
 }
