@@ -1,7 +1,6 @@
 {
     "wordlist": {
-        "bin/wordlist.txt": 10,
-        "bin/words.txt": 2
+        "bin/list_of_wordcount_with_lemmatized_in_encyclopaedia_britannica.txt": 1
     },
     "capitalNamesBoost": 1,
     "stopWordsList": "bin/stop_words.txt",

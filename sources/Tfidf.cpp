@@ -9,10 +9,7 @@ double Tfidf::calculate(const Word& word, TextDocument& text) const {
 
     double tf = (double)word_count / (double)total_word_count;
 
-    return tf;
-}
+    double idf = log(1 / (double)word.getDF());
 
-// double Tfidf::calculate(const Sentence& sentence, TextDocument& text) const {
-//     return (double)(sentence.getWords()[0]->getDF()) 
-//     / (double)(text.getTotalWordCount());
-// }
+    return tf * idf;
+}

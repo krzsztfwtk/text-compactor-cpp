@@ -59,12 +59,14 @@ void TextDocument::parseSentences(const std::string& text,
 }
 
 void TextDocument::countWords() {
-  for (Sentence sentence : sentences_)
+  for (const Sentence& sentence : sentences_)
   {
-    for (Word* word : sentence.getWords())
-    {
-      word_count_[word->getLemmatization()]++;
+    SentenceElement* current = sentence.getWords().get();
+
+    while (current->getNext() != nullptr) {
+      word_count_[current->getWord()->getLemmatization()]++;
       total_word_count++;
+      current = current->getNext();
     }
   }
 }
