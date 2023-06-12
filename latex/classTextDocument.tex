@@ -1,0 +1,79 @@
+\hypertarget{classTextDocument}{}\doxysection{Text\+Document Class Reference}
+\label{classTextDocument}\index{TextDocument@{TextDocument}}
+
+
+{\ttfamily \#include $<$Text\+Document.\+h$>$}
+
+
+
+Collaboration diagram for Text\+Document\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{classTextDocument__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTextDocument_ac697acb13711bd158eddf018ded66aa3}{Text\+Document}} (const std\+::string \&filename, \mbox{\hyperlink{classDictionary}{Dictionary}} \&dictionary)
+\item 
+void \mbox{\hyperlink{classTextDocument_a9b903d651a2199f49c6fe14fad5b6aa0}{load\+From\+File}} (const std\+::string \&filename, \mbox{\hyperlink{classDictionary}{Dictionary}} \&dictionary)
+\item 
+std\+::string \mbox{\hyperlink{classTextDocument_a9d82e58453c1a2087a3b8ff889b4e572}{get\+Text}} () const
+\item 
+unsigned int \mbox{\hyperlink{classTextDocument_aeadb8d7ce9307ea706660ae99ac63604}{get\+Word\+Count}} (const \mbox{\hyperlink{classWord}{Word}} \&word)
+\item 
+unsigned int \mbox{\hyperlink{classTextDocument_a3b0fd2e01f607ad179f8d76a40a1fa39}{get\+Total\+Word\+Count}} ()
+\item 
+std\+::list$<$ \mbox{\hyperlink{classSentence}{Sentence}} $>$ \mbox{\hyperlink{classTextDocument_a18de901703509e0f97a521bd1ce78e48}{get\+Sentences}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTextDocument_ac697acb13711bd158eddf018ded66aa3}\label{classTextDocument_ac697acb13711bd158eddf018ded66aa3}} 
+\index{TextDocument@{TextDocument}!TextDocument@{TextDocument}}
+\index{TextDocument@{TextDocument}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{TextDocument()}{TextDocument()}}
+{\footnotesize\ttfamily Text\+Document\+::\+Text\+Document (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{\mbox{\hyperlink{classDictionary}{Dictionary}} \&}]{dictionary }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTextDocument_a18de901703509e0f97a521bd1ce78e48}\label{classTextDocument_a18de901703509e0f97a521bd1ce78e48}} 
+\index{TextDocument@{TextDocument}!getSentences@{getSentences}}
+\index{getSentences@{getSentences}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{getSentences()}{getSentences()}}
+{\footnotesize\ttfamily std\+::list$<$ \mbox{\hyperlink{classSentence}{Sentence}} $>$ Text\+Document\+::get\+Sentences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTextDocument_a9d82e58453c1a2087a3b8ff889b4e572}\label{classTextDocument_a9d82e58453c1a2087a3b8ff889b4e572}} 
+\index{TextDocument@{TextDocument}!getText@{getText}}
+\index{getText@{getText}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{getText()}{getText()}}
+{\footnotesize\ttfamily std\+::string Text\+Document\+::get\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTextDocument_a3b0fd2e01f607ad179f8d76a40a1fa39}\label{classTextDocument_a3b0fd2e01f607ad179f8d76a40a1fa39}} 
+\index{TextDocument@{TextDocument}!getTotalWordCount@{getTotalWordCount}}
+\index{getTotalWordCount@{getTotalWordCount}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{getTotalWordCount()}{getTotalWordCount()}}
+{\footnotesize\ttfamily unsigned int Text\+Document\+::get\+Total\+Word\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTextDocument_aeadb8d7ce9307ea706660ae99ac63604}\label{classTextDocument_aeadb8d7ce9307ea706660ae99ac63604}} 
+\index{TextDocument@{TextDocument}!getWordCount@{getWordCount}}
+\index{getWordCount@{getWordCount}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{getWordCount()}{getWordCount()}}
+{\footnotesize\ttfamily unsigned int Text\+Document\+::get\+Word\+Count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classWord}{Word}} \&}]{word }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTextDocument_a9b903d651a2199f49c6fe14fad5b6aa0}\label{classTextDocument_a9b903d651a2199f49c6fe14fad5b6aa0}} 
+\index{TextDocument@{TextDocument}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!TextDocument@{TextDocument}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily void Text\+Document\+::load\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{\mbox{\hyperlink{classDictionary}{Dictionary}} \&}]{dictionary }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sources/\mbox{\hyperlink{TextDocument_8h}{Text\+Document.\+h}}\item 
+sources/\mbox{\hyperlink{TextDocument_8cpp}{Text\+Document.\+cpp}}\end{DoxyCompactItemize}

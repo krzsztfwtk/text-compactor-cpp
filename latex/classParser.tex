@@ -1,0 +1,127 @@
+\hypertarget{classParser}{}\doxysection{Parser Class Reference}
+\label{classParser}\index{Parser@{Parser}}
+
+
+{\ttfamily \#include $<$Parser.\+h$>$}
+
+
+
+Collaboration diagram for Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classParser_ae56e1020ba5a40b15bfcd3704cb01bd4}{Parser}} (int argc, char $\ast$$\ast$argv)
+\item 
+\mbox{\hyperlink{classParser_a3e658b5917a93a3ef648050d060e3a93}{$\sim$\+Parser}} ()
+\item 
+std\+::string \mbox{\hyperlink{classParser_acf8fbd7363259bbfbd2fcde71098bfad}{get\+Input\+Filename}} () const
+\item 
+std\+::string \mbox{\hyperlink{classParser_a551f8f3d81cb682c4f1fa02057c5a981}{get\+Output\+Filename}} () const
+\item 
+std\+::string \mbox{\hyperlink{classParser_a39d546788e8166151c9561dec2666667}{get\+Config\+Filename}} () const
+\item 
+std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ \mbox{\hyperlink{classParser_a264f99fa5142f594176d136136724e4b}{get\+Wordlist\+Filenames}} () const
+\item 
+std\+::string \mbox{\hyperlink{classParser_a818f843f6208bedb5024f731b3480f67}{get\+Stop\+Words\+Filename}} () const
+\item 
+int \mbox{\hyperlink{classParser_ad6c8e4c1efb6eeca30de08711b9b068d}{get\+Capital\+Names\+Boost}} () const
+\item 
+unsigned int \mbox{\hyperlink{classParser_a08628f189e29acb4896dde8edcf84a44}{get\+Minimum\+TFIDF}} () const
+\item 
+unsigned int \mbox{\hyperlink{classParser_a84effefba583f5dcd4bda647dcea0e98}{get\+Number\+Of\+Tags}} () const
+\item 
+bool \mbox{\hyperlink{classParser_a540c6e5857c635a60abbdd51fe1a5d2a}{is\+Help}} () const
+\item 
+bool \mbox{\hyperlink{classParser_adeffb19970e91ceeff130af0d911806e}{is\+Verbose}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classParser_ae56e1020ba5a40b15bfcd3704cb01bd4}\label{classParser_ae56e1020ba5a40b15bfcd3704cb01bd4}} 
+\index{Parser@{Parser}!Parser@{Parser}}
+\index{Parser@{Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{Parser()}{Parser()}}
+{\footnotesize\ttfamily Parser\+::\+Parser (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classParser_a3e658b5917a93a3ef648050d060e3a93}\label{classParser_a3e658b5917a93a3ef648050d060e3a93}} 
+\index{Parser@{Parser}!````~Parser@{$\sim$Parser}}
+\index{````~Parser@{$\sim$Parser}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{$\sim$Parser()}{~Parser()}}
+{\footnotesize\ttfamily Parser\+::$\sim$\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classParser_ad6c8e4c1efb6eeca30de08711b9b068d}\label{classParser_ad6c8e4c1efb6eeca30de08711b9b068d}} 
+\index{Parser@{Parser}!getCapitalNamesBoost@{getCapitalNamesBoost}}
+\index{getCapitalNamesBoost@{getCapitalNamesBoost}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getCapitalNamesBoost()}{getCapitalNamesBoost()}}
+{\footnotesize\ttfamily int Parser\+::get\+Capital\+Names\+Boost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a39d546788e8166151c9561dec2666667}\label{classParser_a39d546788e8166151c9561dec2666667}} 
+\index{Parser@{Parser}!getConfigFilename@{getConfigFilename}}
+\index{getConfigFilename@{getConfigFilename}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getConfigFilename()}{getConfigFilename()}}
+{\footnotesize\ttfamily std\+::string Parser\+::get\+Config\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_acf8fbd7363259bbfbd2fcde71098bfad}\label{classParser_acf8fbd7363259bbfbd2fcde71098bfad}} 
+\index{Parser@{Parser}!getInputFilename@{getInputFilename}}
+\index{getInputFilename@{getInputFilename}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getInputFilename()}{getInputFilename()}}
+{\footnotesize\ttfamily std\+::string Parser\+::get\+Input\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a08628f189e29acb4896dde8edcf84a44}\label{classParser_a08628f189e29acb4896dde8edcf84a44}} 
+\index{Parser@{Parser}!getMinimumTFIDF@{getMinimumTFIDF}}
+\index{getMinimumTFIDF@{getMinimumTFIDF}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getMinimumTFIDF()}{getMinimumTFIDF()}}
+{\footnotesize\ttfamily unsigned int Parser\+::get\+Minimum\+TFIDF (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a84effefba583f5dcd4bda647dcea0e98}\label{classParser_a84effefba583f5dcd4bda647dcea0e98}} 
+\index{Parser@{Parser}!getNumberOfTags@{getNumberOfTags}}
+\index{getNumberOfTags@{getNumberOfTags}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getNumberOfTags()}{getNumberOfTags()}}
+{\footnotesize\ttfamily unsigned int Parser\+::get\+Number\+Of\+Tags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a551f8f3d81cb682c4f1fa02057c5a981}\label{classParser_a551f8f3d81cb682c4f1fa02057c5a981}} 
+\index{Parser@{Parser}!getOutputFilename@{getOutputFilename}}
+\index{getOutputFilename@{getOutputFilename}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getOutputFilename()}{getOutputFilename()}}
+{\footnotesize\ttfamily std\+::string Parser\+::get\+Output\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a818f843f6208bedb5024f731b3480f67}\label{classParser_a818f843f6208bedb5024f731b3480f67}} 
+\index{Parser@{Parser}!getStopWordsFilename@{getStopWordsFilename}}
+\index{getStopWordsFilename@{getStopWordsFilename}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getStopWordsFilename()}{getStopWordsFilename()}}
+{\footnotesize\ttfamily std\+::string Parser\+::get\+Stop\+Words\+Filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a264f99fa5142f594176d136136724e4b}\label{classParser_a264f99fa5142f594176d136136724e4b}} 
+\index{Parser@{Parser}!getWordlistFilenames@{getWordlistFilenames}}
+\index{getWordlistFilenames@{getWordlistFilenames}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{getWordlistFilenames()}{getWordlistFilenames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ std\+::string, int $>$ $>$ Parser\+::get\+Wordlist\+Filenames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_a540c6e5857c635a60abbdd51fe1a5d2a}\label{classParser_a540c6e5857c635a60abbdd51fe1a5d2a}} 
+\index{Parser@{Parser}!isHelp@{isHelp}}
+\index{isHelp@{isHelp}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{isHelp()}{isHelp()}}
+{\footnotesize\ttfamily bool Parser\+::is\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classParser_adeffb19970e91ceeff130af0d911806e}\label{classParser_adeffb19970e91ceeff130af0d911806e}} 
+\index{Parser@{Parser}!isVerbose@{isVerbose}}
+\index{isVerbose@{isVerbose}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{isVerbose()}{isVerbose()}}
+{\footnotesize\ttfamily bool Parser\+::is\+Verbose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+sources/\mbox{\hyperlink{Parser_8h}{Parser.\+h}}\item 
+sources/\mbox{\hyperlink{Parser_8cpp}{Parser.\+cpp}}\end{DoxyCompactItemize}
