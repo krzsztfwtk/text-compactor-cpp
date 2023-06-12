@@ -7,7 +7,7 @@
 #include <iostream>
 #include <sstream>
 
-Parser::Parser(int argc, char** argv) {
+Parser::Parser(int argc, char **argv) {
   this->argc_ = argc;
   this->argv_ = argv;
   loadArgs();

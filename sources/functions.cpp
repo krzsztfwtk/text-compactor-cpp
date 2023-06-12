@@ -1,12 +1,11 @@
 #include "functions.h"
 
-
-double calculate(const Sentence& sentence, 
-const Measure& measure, TextDocument& text) {
+double calculate(const Sentence &sentence, const Measure &measure,
+                 TextDocument &text) {
   double sum = 0;
   int words_number = 0;
 
-  SentenceElement* words_it = sentence.getWords().get();
+  SentenceElement *words_it = sentence.getWords().get();
 
   if (words_it == nullptr) {
     return 0;

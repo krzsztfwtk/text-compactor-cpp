@@ -1,0 +1,243 @@
+Text Compactor C++ is a command line tool that summarizes given text.
+
+By leveraging the zero overhead principle and using lightweight C++ code, you can use text summarization algorithms that are both fast and resource-\/efficient. This can lead to significant performance improvements in natural language processing applications, enabling them to handle large volumes of text data in real-\/time with minimal overhead.\hypertarget{md_README_autotoc_md3}{}\doxysection{Usage}\label{md_README_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{text\_compactor -\/i <input\_file> -\/o <output\_file> -\/c <config\_file> [options]}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<input\_file>    input file with text to be summarized  }
+\DoxyCodeLine{<output\_file>   output file with summarized text  }
+\DoxyCodeLine{<config\_file>   config file in .json or .ini format}
+
+\end{DoxyCode}
+
+
+The usage of the program requires the \mbox{[}-\/c $<$config\+\_\+file$>$\mbox{]} parameter, while \mbox{[}-\/i $<$input\+\_\+file$>$\mbox{]} and \mbox{[}-\/o $<$output\+\_\+file$>$\mbox{]} parameters are optional. If you do not specify an input file, the program will prompt you to enter text in the terminal window. If you do not specify an output file, the program will display the result in the terminal window.\hypertarget{md_README_autotoc_md4}{}\doxysection{General Options}\label{md_README_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/h, -\/-\/help      Show help.  }
+\DoxyCodeLine{-\/v, -\/-\/verbose   Give more output.}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md5}{}\doxysection{Configuration}\label{md_README_autotoc_md5}
+To specify the configuration, create a config.\+ini or config.\+json file with the following parameters\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{wordlist files: files which will be used to calculate term frequency by program.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Required}
+\DoxyCodeLine{}
+\DoxyCodeLine{Files should be in format:}
+\DoxyCodeLine{<word> <lemmatized> <number>}
+\DoxyCodeLine{example:}
+\DoxyCodeLine{caring care 158}
+\DoxyCodeLine{}
+\DoxyCodeLine{you can specify one or more wordlist files}
+\DoxyCodeLine{you should also specify their weights}
+\DoxyCodeLine{example:}
+\DoxyCodeLine{    "{}wordlist"{}: \{}
+\DoxyCodeLine{        "{}file\_0"{}: 0, //file\_0 will not be taken into account}
+\DoxyCodeLine{        "{}file\_1"{}: 1, //}
+\DoxyCodeLine{        "{}file\_2"{}: 2  //file\_2 is 2 times more important than file\_0}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{you can check where to get such a file in /help}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{capitalNamesBoost: boost importance of capital names.}
+\DoxyCodeLine{[default=0]}
+\DoxyCodeLine{}
+\DoxyCodeLine{Not required}
+\DoxyCodeLine{}
+\DoxyCodeLine{Value should be an integer i: -\/100 < i < 100}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{stopWordsList: file with stop separated words.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Not required}
+\DoxyCodeLine{}
+\DoxyCodeLine{file should look like:}
+\DoxyCodeLine{or the by in be and he are with ...}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{minTfidf: minimum average TF-\/IDF coefficient for sentences.}
+\DoxyCodeLine{[default=1000]}
+\DoxyCodeLine{}
+\DoxyCodeLine{Not required}
+\DoxyCodeLine{}
+\DoxyCodeLine{Value should be an double d: d > 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Larger the coefficient, the longer the summarized text will be}
+\DoxyCodeLine{and fewer sentences will be deleted.}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{tags: number of tags which will be displayed next to summarized text}
+\DoxyCodeLine{[default=0]}
+\DoxyCodeLine{}
+\DoxyCodeLine{Not required}
+\DoxyCodeLine{}
+\DoxyCodeLine{Value should be an integer i: i > 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{tags will be words with highest TF-\/IDF coefficient in text.}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//config.json}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    "{}wordlist"{}: \{}
+\DoxyCodeLine{        "{}file\_0"{}: 0,}
+\DoxyCodeLine{        "{}file\_1"{}: 1,}
+\DoxyCodeLine{        "{}file\_2"{}: 2}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    "{}capitalNamesBoost"{}: 1,}
+\DoxyCodeLine{    "{}stopWordsList"{}: "{}stop\_words\_file"{},}
+\DoxyCodeLine{    "{}minTfidf"{}: 600,}
+\DoxyCodeLine{    "{}tags"{}: 5}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# config.ini}
+\DoxyCodeLine{}
+\DoxyCodeLine{wordlist=file\_0 0 file\_1 1 file\_2 2}
+\DoxyCodeLine{capitalNamesBoost=1}
+\DoxyCodeLine{stopWordsList=file\_with\_stop\_words}
+\DoxyCodeLine{minTfidf=600}
+\DoxyCodeLine{tags=5}
+
+\end{DoxyCode}
+
+
+Remember about the correct syntax for the .ini configuration file\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{key=value \#correct}
+\DoxyCodeLine{key = value \#incorrect}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md6}{}\doxysection{Example setup}\label{md_README_autotoc_md6}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//wordlist.txt}
+\DoxyCodeLine{}
+\DoxyCodeLine{years year 102789}
+\DoxyCodeLine{made make 224981}
+\DoxyCodeLine{air air 102040}
+\DoxyCodeLine{parts part 126654}
+\DoxyCodeLine{called call 154533}
+\DoxyCodeLine{most most 112266}
+\DoxyCodeLine{many many 155628}
+\DoxyCodeLine{see see 118853}
+\DoxyCodeLine{water water 177624}
+\DoxyCodeLine{only only 232340}
+\DoxyCodeLine{body body 109562}
+\DoxyCodeLine{king king 124390}
+\DoxyCodeLine{number number 109630}
+\DoxyCodeLine{year year 115896}
+\DoxyCodeLine{great great 277788}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//stop\_words.txt }
+\DoxyCodeLine{}
+\DoxyCodeLine{or the by in be and he are with }
+\DoxyCodeLine{is which it to that as of was a}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//config.json}
+\DoxyCodeLine{}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  "{}wordlist"{}: \{}
+\DoxyCodeLine{    "{}wordlist.txt"{}: 1,}
+\DoxyCodeLine{  \},}
+\DoxyCodeLine{  "{}capitalNamesBoost"{}: 3,}
+\DoxyCodeLine{  "{}stopWordsList"{}: "{}stop\_words.txt"{},}
+\DoxyCodeLine{  "{}minTfidf"{}: 1000,}
+\DoxyCodeLine{  "{}tags"{}: 5}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//text.txt}
+\DoxyCodeLine{}
+\DoxyCodeLine{Because the launch needed a deeper draught than a regular boat, }
+\DoxyCodeLine{it was difficult to land it on the shallow bank of the Ganga. }
+\DoxyCodeLine{The captain finally resorted to the expedient of nnooring it }
+\DoxyCodeLine{to a chain of boats, which he in effect commandeered. }
+\DoxyCodeLine{By the time the launch was moored, more than three-\/quarters }
+\DoxyCodeLine{of an hour had passed. The crowds at the main bathing areas }
+\DoxyCodeLine{on the Brahmpur side had thinned to almost nothing. }
+\DoxyCodeLine{The news of the disaster had spread swiftly. The bathing }
+\DoxyCodeLine{posts with their colourful signs—parrot, peacock, bear, }
+\DoxyCodeLine{scissors, mountain, trident and so on—were almost deserted. }
+\DoxyCodeLine{A few people, in a restrained, almost fearful way, }
+\DoxyCodeLine{were still dipping themselves in the river and hurrying away. }
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#run in command line}
+\DoxyCodeLine{text\_compactor -\/i text.txt -\/o summary.out -\/c config.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//summary.out}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#brahmpur \#nnooring \#colourful \#commandeered \#ganga}
+\DoxyCodeLine{}
+\DoxyCodeLine{Because the launch needed a deeper draught than a regular boat,}
+\DoxyCodeLine{it was difficult to land it on the shallow bank of the Ganga.}
+\DoxyCodeLine{The captain finally resorted to the expedient of nnooring it}
+\DoxyCodeLine{to a chain of boats, which he in effect commandeered. The crowds}
+\DoxyCodeLine{at the main bathing areas on the Brahmpur side had thinned to}
+\DoxyCodeLine{almost nothing. The news of the disaster had spread swiftly.}
+\DoxyCodeLine{The bathing posts with their colourful signs—parrot, peacock,}
+\DoxyCodeLine{bear, scissors, mountain, trident and so on—were almost deserted.}
+
+\end{DoxyCode}
+ 

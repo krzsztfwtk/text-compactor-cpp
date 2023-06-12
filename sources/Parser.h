@@ -5,8 +5,8 @@
 #include <vector>
 
 class Parser {
- public:
-  Parser(int argc, char** argv);
+public:
+  Parser(int argc, char **argv);
   ~Parser();
 
   std::string getInputFilename() const;
@@ -20,9 +20,9 @@ class Parser {
   bool isHelp() const;
   bool isVerbose() const;
 
- private:
+private:
   int argc_;
-  char** argv_;
+  char **argv_;
   void loadArgs();
   void loadIniConfig();
   void loadJsonConfig();

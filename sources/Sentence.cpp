@@ -4,26 +4,25 @@
 #include <cctype>
 #include <sstream>
 
-Sentence::Sentence(const std::string& text, Dictionary& dictionary)
+Sentence::Sentence(const std::string &text, Dictionary &dictionary)
     : text_(text) {
   tokenize(dictionary);
 }
 
 std::string Sentence::getText() const { return text_; }
 
-std::shared_ptr<SentenceElement> Sentence::getWords() const 
-{ return words_; }
+std::shared_ptr<SentenceElement> Sentence::getWords() const { return words_; }
 
-std::ostream& operator<<(std::ostream& os, const Sentence& sentence) {
+std::ostream &operator<<(std::ostream &os, const Sentence &sentence) {
   os << sentence.text_;
   return os;
 }
 
-void Sentence::addWord(Word* word) {
+void Sentence::addWord(Word *word) {
   if (words_ == nullptr) {
     words_ = std::make_unique<SentenceElement>(word);
   } else {
-    SentenceElement* current = words_.get();
+    SentenceElement *current = words_.get();
     while (current->getNext() != nullptr) {
       current = current->getNext();
     }
@@ -31,12 +30,12 @@ void Sentence::addWord(Word* word) {
   }
 }
 
-Sentence& Sentence::operator+=(Word* word) {
+Sentence &Sentence::operator+=(Word *word) {
   addWord(word);
   return *this;
 }
 
-void Sentence::tokenize(Dictionary& dictionary) {
+void Sentence::tokenize(Dictionary &dictionary) {
   std::string normalized_text;
 
   // Remove non-alpha characters and convert to lowercase
@@ -44,14 +43,14 @@ void Sentence::tokenize(Dictionary& dictionary) {
     if (std::isalpha(c)) {
       normalized_text += std::tolower(c);
     } else {
-      normalized_text += ' ';  // Replace non-alpha characters with spaces
+      normalized_text += ' '; // Replace non-alpha characters with spaces
     }
   }
 
   std::stringstream ss(normalized_text);
   std::string token;
   while (ss >> token) {
-    Word* word = dictionary[token];
+    Word *word = dictionary[token];
 
     if (word) {
       *this += word;

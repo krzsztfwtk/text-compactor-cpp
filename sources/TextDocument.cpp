@@ -3,13 +3,13 @@
 #include <fstream>
 #include <sstream>
 
-TextDocument::TextDocument(const std::string& filename,
-                           Dictionary& dictionary) {
+TextDocument::TextDocument(const std::string &filename,
+                           Dictionary &dictionary) {
   loadFromFile(filename, dictionary);
 }
 
-void TextDocument::loadFromFile(const std::string& filename,
-                                Dictionary& dictionary) {
+void TextDocument::loadFromFile(const std::string &filename,
+                                Dictionary &dictionary) {
   std::ifstream file(filename);
 
   std::stringstream buffer;
@@ -22,7 +22,7 @@ void TextDocument::loadFromFile(const std::string& filename,
 
 std::string TextDocument::getText() const {
   std::string result;
-  for (const auto& sentence : sentences_) {
+  for (const auto &sentence : sentences_) {
     if (!result.empty()) {
       result += ' ';
     }
@@ -31,19 +31,19 @@ std::string TextDocument::getText() const {
   return result;
 }
 
-unsigned int TextDocument::getWordCount(const Word& word) 
-  { return word_count_[word.getLemmatization()]; }
+unsigned int TextDocument::getWordCount(const Word &word) {
+  return word_count_[word.getLemmatization()];
+}
 
 // unsigned int TextDocument::getWordCount(const std::string& word)
 //   { return word_count_[word]; }
 
-unsigned int TextDocument::getTotalWordCount()
-  { return total_word_count; }
+unsigned int TextDocument::getTotalWordCount() { return total_word_count; }
 
 std::list<Sentence> TextDocument::getSentences() const { return sentences_; }
 
-void TextDocument::parseSentences(const std::string& text,
-                                  Dictionary& dictionary) {
+void TextDocument::parseSentences(const std::string &text,
+                                  Dictionary &dictionary) {
   sentences_.clear();
   std::string current_sentence;
   for (char c : text) {
@@ -59,9 +59,8 @@ void TextDocument::parseSentences(const std::string& text,
 }
 
 void TextDocument::countWords() {
-  for (const Sentence& sentence : sentences_)
-  {
-    SentenceElement* current = sentence.getWords().get();
+  for (const Sentence &sentence : sentences_) {
+    SentenceElement *current = sentence.getWords().get();
 
     while (current->getNext() != nullptr) {
       word_count_[current->getWord()->getLemmatization()]++;

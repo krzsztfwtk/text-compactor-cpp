@@ -4,16 +4,16 @@
 #include <unordered_set>
 
 class StopWords {
- public:
+public:
   StopWords();
-  StopWords(const std::string& filename);
+  StopWords(const std::string &filename);
 
-  void loadFromFile(const std::string& filename);
-  bool isStopWord(const std::string& word) const;
-  bool operator()(const std::string& word) const;
+  void loadFromFile(const std::string &filename);
+  bool isStopWord(const std::string &word) const;
+  bool operator()(const std::string &word) const;
 
-  const std::unordered_set<std::string>& getWords() const;
+  const std::unordered_set<std::string> &getWords() const;
 
- private:
+private:
   std::unordered_set<std::string> stop_words_;
 };

@@ -11,21 +11,21 @@
 #include "Word.h"
 
 class Dictionary {
- public:
+public:
   Dictionary();
-  Dictionary(const std::string& filename);
-  Dictionary(const std::vector<std::pair<std::string, int>>&
-                 wordlist_filenames_with_weights);
+  Dictionary(const std::string &filename);
+  Dictionary(const std::vector<std::pair<std::string, int>>
+                 &wordlist_filenames_with_weights);
 
-  void loadFromFile(const std::string& filename, int weight = 1);
-  void loadFromFilesVector(const std::vector<std::pair<std::string, int>>&
-                               wordlist_filenames_with_weights);
+  void loadFromFile(const std::string &filename, int weight = 1);
+  void loadFromFilesVector(const std::vector<std::pair<std::string, int>>
+                               &wordlist_filenames_with_weights);
 
-  Word* operator[](const std::string& key);
-  Dictionary& operator+=(const Word& word);
+  Word *operator[](const std::string &key);
+  Dictionary &operator+=(const Word &word);
 
-  void removeStopWords(const StopWords& stop_words);
+  void removeStopWords(const StopWords &stop_words);
 
- private:
+private:
   std::unordered_map<std::string, Word> words_;
 };
