@@ -19,7 +19,8 @@ double calculate(const Sentence &sentence,
 
   double average = sum / (double)words_number;
 
-  if (words_number < 1) return 0.0;
+  if (words_number < 1)
+    return 0.0;
 
   return average;
 }
@@ -71,16 +72,17 @@ void saveTags(std::ofstream &output_file, const unsigned int number_of_tags,
   }
 }
 
-std::string compact(TextDocument &text, const std::shared_ptr<Measure> measure) {
+std::string compact(TextDocument &text,
+                    const std::shared_ptr<Measure> measure) {
   std::string compacted_text;
 
   double sum_of_importance = 0;
 
-  std::list<Sentence> sentences = text.getSentences(); 
+  std::list<Sentence> sentences = text.getSentences();
 
-  for (Sentence& sentence : sentences) {
+  for (Sentence &sentence : sentences) {
     double importance = calculate(sentence, measure, text);
-    sentence.importance = importance; 
+    sentence.importance = importance;
     sum_of_importance += importance;
   }
 
@@ -88,7 +90,7 @@ std::string compact(TextDocument &text, const std::shared_ptr<Measure> measure) 
 
   for (auto it = sentences.begin(); it != sentences.end();) {
     if (it->importance > average_importance) {
-        compacted_text += it->getText();
+      compacted_text += it->getText();
     }
     ++it;
   }

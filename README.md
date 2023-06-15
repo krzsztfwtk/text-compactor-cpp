@@ -61,7 +61,7 @@ Value should be an integer i: -100 < i < 100
 ```
 
 ```text
-stopWordsList: file with stop separated words.
+stopWordsList: file with separated stop words.
 
 Not required
 

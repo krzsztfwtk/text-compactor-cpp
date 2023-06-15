@@ -27,7 +27,7 @@ std::ostream &operator<<(std::ostream &os, const Word &word) {
   return os;
 }
 
-std::istream& operator>>(std::istream& is, Word& word) {
+std::istream &operator>>(std::istream &is, Word &word) {
   std::string name, lemmatization;
   unsigned int df = 0;
 

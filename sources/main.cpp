@@ -36,11 +36,14 @@ int main(int argc, char **argv) {
 
   std::ofstream output_file(arguments.getOutputFilename());
 
-  saveTags(output_file, arguments.getNumberOfTags(), text, pMeasure);
-
   std::string compacted_text = compact(text, pMeasure);
 
-  output_file << compacted_text;
-
+  if (output_file) {
+    saveTags(output_file, arguments.getNumberOfTags(), text, pMeasure);
+    std::string compacted_text = compact(text, pMeasure);
+    output_file << compacted_text;
+  } else {
+    std::cout << compacted_text;
+  }
   return 0;
 }

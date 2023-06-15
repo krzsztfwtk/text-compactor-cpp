@@ -1,8 +1,8 @@
 #pragma once
 
+#include <istream>
 #include <string>
 #include <unordered_set>
-#include <istream>
 
 class StopWords {
 public:
@@ -15,7 +15,7 @@ public:
 
   const std::unordered_set<std::string> &getWords() const;
 
-  friend std::istream& operator>>(std::istream& is, StopWords& stopwords);
+  friend std::istream &operator>>(std::istream &is, StopWords &stopwords);
 
 private:
   std::unordered_set<std::string> stop_words_;

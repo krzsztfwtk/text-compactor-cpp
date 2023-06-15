@@ -27,9 +27,9 @@ const std::unordered_set<std::string> &StopWords::getWords() const {
   return stop_words_;
 }
 
-std::istream& operator>>(std::istream& is, StopWords& stopwords) {
+std::istream &operator>>(std::istream &is, StopWords &stopwords) {
   std::string word;
-  
+
   while (is >> word) {
     stopwords.stop_words_.insert(word);
   }

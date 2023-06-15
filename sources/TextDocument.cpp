@@ -3,8 +3,8 @@
 
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 TextDocument::TextDocument(const std::string &filename,
                            Dictionary &dictionary) {
@@ -74,7 +74,7 @@ void TextDocument::countWords() {
 }
 
 std::ostream &operator<<(std::ostream &os, const TextDocument &text) {
-  for (const Sentence& sentence : text.sentences_) {
+  for (const Sentence &sentence : text.sentences_) {
     std::cout << sentence;
   }
   return os;

@@ -6,5 +6,5 @@
     "stopWordsList": "bin/stop_words.txt",
     "minTfidf": 600,
     "tags": 5,
-    "pseudo": 1
+    "pseudo": 0
 }
