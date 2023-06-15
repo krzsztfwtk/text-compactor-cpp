@@ -92,6 +92,18 @@ Value should be an integer i: i > 0
 tags will be words with highest TF-IDF coefficient in text.
 ```
 
+```text
+pseudo: turns on pseudo mode of measure algorithm. 
+It is less sophisticated and does not use lemmatization
+[default=0]
+
+Not required
+
+Value should belong to {0, 1, off, on, false, true}
+
+It is not recommended to use this mode
+```
+
 ```json
 //config.json
 {

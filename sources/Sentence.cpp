@@ -19,6 +19,9 @@ std::ostream &operator<<(std::ostream &os, const Sentence &sentence) {
 }
 
 void Sentence::addWord(Word *word) {
+  if (word == nullptr)
+    return;
+
   if (words_ == nullptr) {
     words_ = std::make_unique<SentenceElement>(word);
   } else {
@@ -52,9 +55,10 @@ void Sentence::tokenize(Dictionary &dictionary) {
   while (ss >> token) {
     Word *word = dictionary[token];
 
-    if (word) {
-      *this += word;
-    }
+    if (word == nullptr)
+      continue;
+
+    *this += word;
   }
 }
 

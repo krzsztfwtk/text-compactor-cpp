@@ -1,7 +1,10 @@
 #include "TextDocument.h"
+#include "functions.h"
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 
 TextDocument::TextDocument(const std::string &filename,
                            Dictionary &dictionary) {
@@ -32,7 +35,7 @@ std::string TextDocument::getText() const {
 }
 
 unsigned int TextDocument::getWordCount(const Word &word) {
-  return word_count_[word.getLemmatization()];
+  return word_count_[word.getName()];
 }
 
 // unsigned int TextDocument::getWordCount(const std::string& word)
@@ -62,10 +65,17 @@ void TextDocument::countWords() {
   for (const Sentence &sentence : sentences_) {
     SentenceElement *current = sentence.getWords().get();
 
-    while (current->getNext() != nullptr) {
+    while (current != nullptr) {
       word_count_[current->getWord()->getLemmatization()]++;
       total_word_count++;
       current = current->getNext();
     }
   }
+}
+
+std::ostream &operator<<(std::ostream &os, const TextDocument &text) {
+  for (const Sentence& sentence : text.sentences_) {
+    std::cout << sentence;
+  }
+  return os;
 }

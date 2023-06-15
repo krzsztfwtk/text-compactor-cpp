@@ -1,8 +1,13 @@
+#include <fstream>
 #include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "Dictionary.h"
 #include "Measure.h"
 #include "Parser.h"
+#include "PseudoTfidf.h"
 #include "Sentence.h"
 #include "StopWords.h"
 #include "TextDocument.h"
@@ -13,24 +18,29 @@
 int main(int argc, char **argv) {
   Parser arguments(argc, argv);
 
-  Dictionary language_model(arguments.getWordlistFilenames());
+  Dictionary wordlist(arguments.getWordlistFilenames());
 
   StopWords stop_words(arguments.getStopWordsFilename());
 
-  language_model.removeStopWords(stop_words);
+  wordlist.removeStopWords(stop_words);
 
-  TextDocument text(arguments.getInputFilename(), language_model);
+  TextDocument text(arguments.getInputFilename(), wordlist);
 
-  Tfidf model_tfidf(language_model);
+  std::shared_ptr<Measure> pMeasure;
 
-  Sentence first_sentence = text.getSentences().front();
-  Sentence last_sentence = text.getSentences().back();
+  if (arguments.isPseudo()) {
+    pMeasure = std::make_shared<PseudoTfidf>(wordlist);
+  } else {
+    pMeasure = std::make_shared<Tfidf>(wordlist);
+  }
 
-  std::cout << first_sentence << '['
-            << calculate(first_sentence, model_tfidf, text) << ']';
+  std::ofstream output_file(arguments.getOutputFilename());
 
-  std::cout << last_sentence << '['
-            << calculate(last_sentence, model_tfidf, text) << ']';
+  saveTags(output_file, arguments.getNumberOfTags(), text, pMeasure);
+
+  std::string compacted_text = compact(text, pMeasure);
+
+  output_file << compacted_text;
 
   return 0;
 }

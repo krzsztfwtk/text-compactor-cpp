@@ -24,7 +24,7 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Sentence &sentence);
   // odczyt zapis symetrycznie
 
-  // double calculate(Measure& measure, TextDocument& text);
+  double importance = 0;
 
 private:
   std::string text_;

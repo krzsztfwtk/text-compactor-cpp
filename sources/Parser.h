@@ -17,6 +17,7 @@ public:
   int getCapitalNamesBoost() const;
   unsigned int getMinimumTFIDF() const;
   unsigned int getNumberOfTags() const;
+  bool isPseudo() const;
   bool isHelp() const;
   bool isVerbose() const;
 
@@ -38,6 +39,7 @@ private:
   int capital_names_boost_ = 0;
   unsigned int minimum_tfidf_ = 500;
   unsigned int tags_number_ = 0;
+  bool pseudo_ = false;
 
   std::string help_text_;
 

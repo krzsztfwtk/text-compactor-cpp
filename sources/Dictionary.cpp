@@ -29,6 +29,7 @@ void Dictionary::loadFromFile(const std::string &filename, int weight) {
     } else {
       words_[name].addDF(df * weight);
     }
+    df_sum += df;
   }
 }
 
@@ -61,3 +62,5 @@ void Dictionary::removeStopWords(const StopWords &stop_words) {
     words_.erase(stop_word);
   }
 }
+
+unsigned int Dictionary::getDfSum() const { return df_sum; }

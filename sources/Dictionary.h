@@ -26,6 +26,9 @@ public:
 
   void removeStopWords(const StopWords &stop_words);
 
+  unsigned int getDfSum() const;
+
 private:
   std::unordered_map<std::string, Word> words_;
+  unsigned int df_sum = 0;
 };

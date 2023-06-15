@@ -16,6 +16,11 @@ void Word::setLemmatization(const std::string &lemmatization) {
   this->lemmatization_ = lemmatization;
 }
 
-void Word::setDF(unsigned int idf) { this->df_ = idf; }
+void Word::setDF(unsigned int df) { this->df_ = df; }
 
 void Word::addDF(unsigned int value) { this->df_ += value; }
+
+std::ostream &operator<<(std::ostream &os, const Word &word) {
+  os << word.getName();
+  return os;
+}

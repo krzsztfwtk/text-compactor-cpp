@@ -16,10 +16,10 @@ public:
   void setLemmatization(const std::string &lemmatization);
   void setDF(unsigned int df);
   void addDF(unsigned int value);
+  friend std::ostream &operator<<(std::ostream &os, const Word &word);
 
 private:
   std::string name_;
   std::string lemmatization_;
   unsigned int df_;
-  unsigned int idf_;
 };

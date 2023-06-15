@@ -3,9 +3,9 @@
 #include "Dictionary.h"
 #include "Measure.h"
 
-class Tfidf : public Measure {
+class PseudoTfidf : public Measure {
 public:
-  Tfidf(Dictionary &dictionary);
+  PseudoTfidf(const Dictionary &dictionary);
 
   double calculate(Word word, TextDocument &text) const override;
 
@@ -13,5 +13,5 @@ public:
   // const override;
 
 private:
-  Dictionary &dictionary_;
+  const Dictionary &dictionary_;
 };

@@ -3,8 +3,10 @@
 #include <list>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "Sentence.h"
+// #include "Measure.h"
 
 class TextDocument {
 public:
@@ -13,10 +15,13 @@ public:
   void loadFromFile(const std::string &filename, Dictionary &dictionary);
   std::string getText() const;
   unsigned int getWordCount(const Word &word);
-  // unsigned int getWordCount(const std::string& word);
   unsigned int getTotalWordCount();
 
   std::list<Sentence> getSentences() const;
+
+  // friend void compact(const std::shared_ptr<Measure> measure);
+
+  friend std::ostream &operator<<(std::ostream &os, const TextDocument &text);
 
 private:
   std::list<Sentence> sentences_;

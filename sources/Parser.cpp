@@ -99,6 +99,10 @@ void Parser::loadIniConfig() {
         tags_number_ = std::stoi(value);
       } else if (key == "stopWordsList") {
         stop_words_filename_ = value;
+      } else if (key == "pseudo") {
+        if (value == "1" or value == "on" or value == "true") {
+          pseudo_ = true;
+        }
       }
     }
   }
@@ -163,6 +167,10 @@ void Parser::loadJsonConfig() {
         minimum_tfidf_ = std::stoi(value);
       } else if (key == "\"tags\"") {
         tags_number_ = std::stoi(value);
+      } else if (key == "\"pseudo\"") {
+        if (value == "1" or value == "on" or value == "true") {
+          pseudo_ = true;
+        }
       }
     }
   }
@@ -177,6 +185,8 @@ std::string Parser::getConfigFilename() const { return config_filename_; }
 bool Parser::isHelp() const { return help_; }
 
 bool Parser::isVerbose() const { return verbose_; }
+
+bool Parser::isPseudo() const { return pseudo_; }
 
 std::vector<std::pair<std::string, int>> Parser::getWordlistFilenames() const {
   return wordlist_filenames_with_weights_;
