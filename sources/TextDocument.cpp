@@ -79,3 +79,13 @@ std::ostream &operator<<(std::ostream &os, const TextDocument &text) {
   }
   return os;
 }
+
+unsigned int TextDocument::getLength() const {
+  unsigned int sum = 0;
+
+  for (const Sentence& sentence : sentences_) {
+    sum += sentence.getText().length();
+  }
+
+  return sum;
+}

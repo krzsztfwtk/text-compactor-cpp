@@ -23,6 +23,8 @@ public:
 
   friend std::ostream &operator<<(std::ostream &os, const TextDocument &text);
 
+  unsigned int getLength() const;
+
 private:
   std::list<Sentence> sentences_;
   std::unordered_map<std::string, unsigned int> word_count_;
