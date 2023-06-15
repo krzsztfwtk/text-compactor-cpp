@@ -17,6 +17,7 @@ public:
   void setDF(unsigned int df);
   void addDF(unsigned int value);
   friend std::ostream &operator<<(std::ostream &os, const Word &word);
+  friend std::istream& operator>>(std::istream& is, Word& word);
 
 private:
   std::string name_;

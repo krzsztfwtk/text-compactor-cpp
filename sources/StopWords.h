@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_set>
+#include <istream>
 
 class StopWords {
 public:
@@ -13,6 +14,8 @@ public:
   bool operator()(const std::string &word) const;
 
   const std::unordered_set<std::string> &getWords() const;
+
+  friend std::istream& operator>>(std::istream& is, StopWords& stopwords);
 
 private:
   std::unordered_set<std::string> stop_words_;

@@ -1,3 +1,5 @@
+#include <istream>
+
 #include "Word.h"
 
 Word::Word(const std::string &name, const std::string &lemmatization,
@@ -23,4 +25,17 @@ void Word::addDF(unsigned int value) { this->df_ += value; }
 std::ostream &operator<<(std::ostream &os, const Word &word) {
   os << word.getName();
   return os;
+}
+
+std::istream& operator>>(std::istream& is, Word& word) {
+  std::string name, lemmatization;
+  unsigned int df = 0;
+
+  if (is >> name >> lemmatization >> df) {
+    word.name_ = name;
+    word.lemmatization_ = lemmatization;
+    word.df_ = df;
+  }
+
+  return is;
 }
