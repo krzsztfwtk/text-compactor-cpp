@@ -1,0 +1,4 @@
+hello	hello	1953
+world	world	4343
+caring	care	54
+goes	go	134
