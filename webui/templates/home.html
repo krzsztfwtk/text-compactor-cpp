@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>NLP toolkit</h2>
+    <ul>
+        <li><a href="{{ url_for('text_compactor') }}">Text Compactor</a> - Simplify and summarize text.</li>
+        <li><a href="{{ url_for('insight_search') }}">Insight Search</a> - Search the text for the query.</li>
+    </ul>
+{% endblock %}

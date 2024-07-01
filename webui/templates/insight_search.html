@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Insight Search{% endblock %}
+
+{% block content %}
+    <h1>Insight Search</h1>
+    <form id="configForm">
+        <textarea id="textInput" placeholder="Enter your text to search in"></textarea>
+        <input type="text" id="queryInput" placeholder="Enter your query">
+    <label for="queryBoostFactor">Query Boost Factor:</label>
+        <input type="number" id="queryBoostFactor" placeholder="Query Boost Factor" step="any" value="0.5">
+        <label for="wordlist">Wordlist:</label>
+        <select id="wordlist" name="wordlist">
+            <option value="english">English</option>
+            <option value="polish">Polish</option>
+            <option value="english_polish">English-Polish</option>
+        </select>
+        <label for="stopWordsList">Stop Words List:</label>
+        <select id="stopWordsList" name="stopWordsList">
+            <option value="default">Default</option>
+        </select>
+        <input type="number" id="capitalNamesBoost" placeholder="Capital Names Boost">
+        <input type="number" id="selectivityRatio" placeholder="Selectivity Ratio" step="any">
+        <input type="number" id="tags" placeholder="Tags">
+        <label for="measure">Measure Type:</label>
+        <select id="measure" name="measure">
+            <option value="tfidf">TFIDF</option>
+            <option value="pseudotfidf">PseudoTFIDF</option>
+            <option value="bm25">BM25</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"><pre></pre></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

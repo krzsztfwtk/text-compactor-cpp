@@ -1,8 +1,0 @@
-{
-    "wordlist": {
-        "bin/list_of_wordcount_with_lemmatized_in_encyclopaedia_britannica.txt": 1
-    },
-    "stopWordsList": "bin/stop_words.txt",
-    "tags": 10,
-    "pseudo": 0
-}

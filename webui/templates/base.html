@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Text Processing Tools</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('text_compactor') }}">Text Compactor</a>
+        <a href="{{ url_for('insight_search') }}">Insight Search</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
