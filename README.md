@@ -1,5 +1,12 @@
 # NLP Toolkit
 
+NLP Toolkit is an software solution designed to facilitate key natural language processing tasks, including text summarization and semantic search. Leveraging efficient C++ computations combined with an intuitive WebUI, the program ensures high performance and ease of use.
+
+This project was presented as a poster at the TRAI 2024 conference on November 19, 2024, at Kazimierz Wielki University in Bydgoszcz during the scientific conference **Trendy rozwoju AI – TRAI 2024**.
+
+![Development of Tools for Text Summarization and Information Retrieval](development_of_tools_for_text_summarization_and_information_retrieval.webp)
+> *Poster "Development of Tools for Text Summarization and Information Retrieval" showcasing this project, presented at the TRAI 2024 conference.*
+
 ## Usage of the program
 
 NLP Toolkit is a program that provides tools to solve some natural language processing tasks:
