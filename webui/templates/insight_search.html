@@ -5,12 +5,12 @@
 {% block content %}
     <h1>Insight Search</h1>
     <form id="configForm">
-        <textarea id="textInput" placeholder="Enter your text to search in"></textarea>
-        <input type="text" id="queryInput" placeholder="Enter your query">
+        <textarea id="textInput" placeholder="Enter your text to search in" required></textarea>
+        <input type="text" id="queryInput" placeholder="Enter your query" required>
     <label for="queryBoostFactor">Query Boost Factor:</label>
-        <input type="number" id="queryBoostFactor" placeholder="Query Boost Factor" step="any" value="0.5">
+        <input type="number" id="queryBoostFactor" placeholder="Query Boost Factor" step="any" value="0.5" required>
         <label for="wordlist">Wordlist:</label>
-        <select id="wordlist" name="wordlist">
+        <select id="wordlist" name="wordlist" required>
             <option value="english">English</option>
             <option value="polish">Polish</option>
             <option value="english_polish">English-Polish</option>
@@ -19,9 +19,9 @@
         <select id="stopWordsList" name="stopWordsList">
             <option value="default">Default</option>
         </select>
-        <input type="number" id="capitalNamesBoost" placeholder="Capital Names Boost">
-        <input type="number" id="selectivityRatio" placeholder="Selectivity Ratio" step="any">
-        <input type="number" id="tags" placeholder="Tags">
+        <input type="number" id="capitalNamesBoost" placeholder="Capital Names Boost" required>
+        <input type="number" id="selectivityRatio" placeholder="Selectivity Ratio" step="any" required>
+        <input type="number" id="tags" placeholder="Tags" required>
         <label for="measure">Measure Type:</label>
         <select id="measure" name="measure">
             <option value="tfidf">TFIDF</option>

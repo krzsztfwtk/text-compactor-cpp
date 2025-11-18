@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Text Compactor</h1>
     <form id="configForm">
-        <textarea id="textInput" placeholder="Enter your text here"></textarea>
+        <textarea id="textInput" placeholder="Enter your text here" required></textarea>
         <label for="wordlist">Wordlist:</label>
         <select id="wordlist" name="wordlist">
             <option value="english">English</option>
@@ -16,9 +16,9 @@
         <select id="stopWordsList" name="stopWordsList">
             <option value="default">Default</option>
         </select>
-        <input type="number" id="capitalNamesBoost" placeholder="Capital Names Boost">
-        <input type="number" id="selectivityRatio" placeholder="Selectivity Ratio" step="any">
-        <input type="number" id="tags" placeholder="Tags">
+        <input type="number" id="capitalNamesBoost" placeholder="Capital Names Boost" required>
+        <input type="number" id="selectivityRatio" placeholder="Selectivity Ratio" step="any" required>
+        <input type="number" id="tags" placeholder="Tags" required>
         <label for="measure">Measure Type:</label>
         <select id="measure" name="measure">
             <option value="tfidf">TFIDF</option>
