@@ -24,7 +24,7 @@ class RouteHandler:
 
     def compile_cpp_project(self, base_dir):
         cpp_dir = base_dir / '..' / 'cpp'
-        compile_commands = ["mingw64-make", "mingw32-make"] if platform.system() == "Windows" else ["make"]
+        compile_commands = ["make", "mingw64-make", "mingw32-make"] if platform.system() == "Windows" else ["make"]
 
         for compile_command in compile_commands:
             try:

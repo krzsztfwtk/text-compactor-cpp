@@ -20,20 +20,21 @@ Before running the program, it's essential to compile the C++ subprogram. If the
 
 To build a C++ subprogram, go to the `cpp` directory and build it using the Make system.
 
-For Linux users, execute the following command:
+Execute the following command in `cpp` directory:
 
 ```bash
 make
 ```
 
-For Windows users, use the following command, assuming you have MinGW installed:
+Ensure that GNU Make is installed on your system. Most Linux distributions include it by default. 
 
+To use `make` on Windows, you can install GNU Make via [MSYS2](https://www.msys2.org/).
+
+Alternatively, if you are using MinGW on Windows, it might already include a `make` utility. Depending on your MinGW setup, you might need to use one of the following commands:
 ```bash
 mingw64-make
 ```
-
 or
-
 ```bash
 mingw32-make
 ```

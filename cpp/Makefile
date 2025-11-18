@@ -8,6 +8,7 @@ SRCS = $(wildcard $(SRCDIR)/*.cpp)
 
 $(EXEC): $(SRCS)
 	echo "Building to $(EXEC)"
+	mkdir -p $(BINDIR)
 	$(CXX) $(CXXFLAGS) $(SRCS) -o $(EXEC)
 
 .PHONY: all clean
