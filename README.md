@@ -16,6 +16,9 @@ NLP Toolkit is a program that provides tools to solve some natural language proc
 
 The program is cross-platform, meaning it can operate on both Windows and Linux systems.
 
+![Web interface](interface.webp)
+> *Web interface of the program*
+
 Before running the program, it's essential to compile the C++ subprogram. If the C++ subprogram is not compiled, the Python WebUI will try to compile it using the `subprocess` library. Nevertheless, it is recommended to compile it previously to avoid errors.
 
 To build a C++ subprogram, go to the `cpp` directory and build it using the Make system.
